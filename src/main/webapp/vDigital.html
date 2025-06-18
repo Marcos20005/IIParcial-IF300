@@ -1,0 +1,50 @@
+<<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Violencia Digital</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+   <div class="Violencia-Digital ventana" style="display: block;">
+     <h2>Información adicional del caso de Violencia Digital</h2>
+
+     <form action="http://localhost:8080/miproyectoexamen/AgregarViolencia" method="post">
+     
+       <label for="plataformaAgresion">Plataforma de la agresión *</label>
+       <input type="text" id="plataformaAgresion"
+              name="plataformaAgresion" required>
+
+       
+       <label for="agresorNombre">Nombre del agresor *</label>
+       <input type="text" id="agresorNombre"
+              name="agresorNombre" required>
+
+       <label for="relacionAgresor">Relación con el agresor *</label>
+       <input type="text" id="relacionAgresor"
+              name="relacionAgresor" required>
+
+      
+       <label>Género del agresor *</label>
+       <div class="radio-grupo">
+         <label>
+           <input type="radio" name="agresorGenero"
+                  value="Femenino" required> Femenino
+         </label>
+         <label>
+           <input type="radio" name="agresorGenero"
+                  value="Masculino" required> Masculino
+         </label>
+         <label>
+           <input type="radio" name="agresorGenero"
+                  value="Otro" required> Otro
+         </label>
+       </div>
+
+       <div class="botones">
+         <button type="submit">💾 Guardar</button>
+       </div>
+     </form>
+   </div>
+</body>
+</html>

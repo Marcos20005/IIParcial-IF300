@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registros de casos</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <div class="ventana">
+        <h2>Registros de casos</h2>
+
+        <label for="areaCasos">Casos registrados</label>
+        <textarea id="areaCasos" rows="5" readonly></textarea>
+
+        <label for="cedula">Ingrese número de cédula de caso</label>
+        <input type="text" id="cedula" name="cedula">
+
+        <div class="botones">
+            <button id="btn" onclick="window.location.href='AgregarCaso.html'">Ingresar</button>
+            <button>Buscar</button>
+            <button>Editar</button>
+            <button>Eliminar</button>
+        </div>
+    </div>
+</body>
+</html>

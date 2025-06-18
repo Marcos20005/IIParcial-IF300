@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Violencia Física</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+   <div class="Violencia-Fisica ventana" style="display: block;">
+    <h2>Informacion adicional del caso de violencia fisica</h2>
+
+        <label for="lesiones">Ingrese el tipo de lesion sufrida *</label>
+        <input type="text" id="lesiones" name="lesiones" required>
+
+        <label for="tratamiento">Ingrese la atencion medica recibida *</label>
+        <input type="text" id="tratamiento" name="tratamiento" required>
+
+        <label for="nombre">Ingrese el nombre del agresor *</label>
+        <input type="text" id="nombre" name="nombre" required>
+
+        <label for="relacion">Ingrese la relacion con el agresor *</label>
+        <input type="text" id="relacion" name="relacion" required>
+
+        <label>Género de la persona *</label>
+            <div class="radio-grupo">
+                <label><input type="radio" name="genero" required> Femenino</label>
+                <label><input type="radio" name="genero" required> Masculino</label>
+                <label><input type="radio" name="genero" required> Otro</label>
+            </div>
+
+        <div class="botones">
+            <button>💾Guardar</button>
+        </div>
+    </div>
+</body>
+</html>
