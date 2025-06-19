@@ -1,8 +1,11 @@
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/vUsuario")
 public class vUsuario extends HttpServlet {
@@ -31,13 +34,13 @@ public class vUsuario extends HttpServlet {
             out.println("<input type='text' name='cedula' required>");
 
             out.println("<label>Primer nombre *</label>");
-            out.println("<input type='text' name='nombre' required>");
+            out.println("<input type='text' name='nombre1' required>");
 
             out.println("<label>Segundo nombre</label>");
             out.println("<input type='text' name='nombre2'>");
 
             out.println("<label>Primer apellido *</label>");
-            out.println("<input type='text' name='apellido' required>");
+            out.println("<input type='text' name='apellido1' required>");
 
             out.println("<label>Segundo apellido</label>");
             out.println("<input type='text' name='apellido2'>");
