@@ -1,5 +1,7 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,21 +11,22 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/vDigital")
 public class VDigitalServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     @Override
     protected void doPost(HttpServletRequest request,
-                          HttpServletResponse response)
+            HttpServletResponse response)
             throws ServletException, IOException {
 
         // Recupera la cédula desde la sesión
         HttpSession session = request.getSession(false);
         String cedula = (session != null)
-                      ? (String) session.getAttribute("cedulaCaso")
-                      : null;
-                      String tipoViolencia = (session != null)
-                             ? (String) session.getAttribute("tipoViolencia")
-                             : null;
+                ? (String) session.getAttribute("cedulaCaso")
+                : null;
+        String tipoViolencia = (session != null)
+                ? (String) session.getAttribute("tipoViolencia")
+                : null;
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -51,9 +54,9 @@ public class VDigitalServlet extends HttpServlet {
             out.println("      </div>");
             // Campo oculto con la cédula
             out.printf("      <input type=\"hidden\" name=\"cedula\" value=\"%s\">%n",
-                       cedula != null ? cedula : "");
-                        out.printf("      <input type=\"hidden\" name=\"tipoViolencia\" value=\"%s\">%n",
-                       tipoViolencia != null ? tipoViolencia : "");
+                    cedula != null ? cedula : "");
+            out.printf("      <input type=\"hidden\" name=\"tipoViolencia\" value=\"%s\">%n",
+                    tipoViolencia != null ? tipoViolencia : "");
             out.println("      <div class=\"botones\">");
             out.println("        <button type=\"submit\">💾 Guardar</button>");
             out.println("      </div>");
@@ -63,4 +66,3 @@ public class VDigitalServlet extends HttpServlet {
         }
     }
 }
-

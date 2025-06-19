@@ -1,5 +1,7 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpSession;
 
 @WebServlet("/vEconomica")
 public class VEconomicaServlet extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     @Override
@@ -18,8 +21,11 @@ public class VEconomicaServlet extends HttpServlet {
         // Obtener cédula desde sesión
         HttpSession session = request.getSession(false);
         String cedula = (session != null)
-                      ? (String) session.getAttribute("cedulaCaso")
-                      : null;
+                ? (String) session.getAttribute("cedulaCaso")
+                : null;
+        String tipoViolencia = (session != null)
+                ? (String) session.getAttribute("tipoViolencia")
+                : null;
 
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
@@ -34,7 +40,7 @@ public class VEconomicaServlet extends HttpServlet {
             out.println("<body>");
             out.println("   <div class=\"Violencia-Economica ventana\" style=\"display: block;\">");
             out.println("    <h2>Información adicional del caso de violencia económica</h2>");
-            out.println("    <form action=\"http://localhost:8080/miproyectoexamen/AgregarInformacionEconomica\" method=\"post\">");
+            out.println("    <form action=\"http://localhost:8080/miproyectoexamen/AgregarViolencia\" method=\"post\">");
 
             out.println("        <label for=\"ingreso\">Ingrese el tipo de ingreso afectado *</label>");
             out.println("        <input type=\"text\" id=\"ingreso\" name=\"ingreso\" required>");
@@ -57,7 +63,9 @@ public class VEconomicaServlet extends HttpServlet {
 
             // Campo oculto con la cédula
             out.printf("        <input type=\"hidden\" name=\"cedula\" value=\"%s\">%n",
-                       cedula != null ? cedula : "");
+                    cedula != null ? cedula : "");
+            out.printf("        <input type=\"hidden\" name=\"tipoViolencia\" value=\"%s\">%n",
+                    tipoViolencia != null ? tipoViolencia : "");
 
             out.println("        <div class=\"botones\">");
             out.println("            <button type=\"submit\">💾Guardar</button>");
@@ -67,7 +75,7 @@ public class VEconomicaServlet extends HttpServlet {
             out.println("   </div>");
             out.println("</body>");
             out.println("</html>");
+
         }
     }
 }
-
