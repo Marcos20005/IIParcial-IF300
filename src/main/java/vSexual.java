@@ -1,0 +1,65 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+@WebServlet("/vSexual")
+public class vSexual extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+
+    @Override
+    protected void doPost(HttpServletRequest request,
+                          HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession(false);
+        String cedula = (session != null) ? (String) session.getAttribute("cedulaCaso") : "";
+        String tipoViolencia = (session != null) ? (String) session.getAttribute("tipoViolencia") : "";
+
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<!DOCTYPE html>");
+            out.println("<html lang=\"es\"><head>");
+            out.println("  <meta charset=\"UTF-8\">");
+            out.println("  <title>Violencia Sexual</title>");
+            out.println("  <link rel=\"stylesheet\" href=\"estilo.css\">");
+            out.println("</head><body>");
+            out.println("  <div class=\"Violencia-Sexual ventana\" style=\"display: block;\">");
+            out.println("    <h2>Información adicional del caso de violencia sexual</h2>");
+            out.println("    <form action=\"http://localhost:8080/miproyectoexamen/AgregarViolencia\" method=\"post\">");
+
+            out.println("      <label for=\"abuso\">Ingrese el tipo de abuso sexual sufrido *</label>");
+            out.println("      <input type=\"text\" id=\"abuso\" name=\"abuso\" required>");
+
+            out.println("      <label for=\"nombre\">Ingrese el nombre del agresor *</label>");
+            out.println("      <input type=\"text\" id=\"nombre\" name=\"nombre\" required>");
+
+            out.println("      <label for=\"relacion\">Ingrese la relación con el agresor *</label>");
+            out.println("      <input type=\"text\" id=\"relacion\" name=\"relacion\" required>");
+
+            out.println("      <label>Género de la persona *</label>");
+            out.println("      <div class=\"radio-grupo\">");
+            out.println("        <label><input type=\"radio\" name=\"genero\" value=\"Femenino\" required> Femenino</label>");
+            out.println("        <label><input type=\"radio\" name=\"genero\" value=\"Masculino\" required> Masculino</label>");
+            out.println("        <label><input type=\"radio\" name=\"genero\" value=\"Otro\" required> Otro</label>");
+            out.println("      </div>");
+
+            out.printf("      <input type=\"hidden\" name=\"cedula\" value=\"%s\">%n", cedula);
+            out.printf("      <input type=\"hidden\" name=\"tipoViolencia\" value=\"%s\">%n", tipoViolencia);
+
+            out.println("      <div class=\"botones\">");
+            out.println("        <button type=\"submit\">💾 Guardar</button>");
+            out.println("      </div>");
+
+            out.println("    </form>");
+            out.println("  </div>");
+            out.println("</body></html>");
+        }
+    }
+}

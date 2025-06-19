@@ -1,5 +1,12 @@
 VEconomicaServlet.class
 AgregarInformacionViolencia.class
+GuardarUsuario.class
 VDigitalServlet.class
+vUsuario.class
 GuardarCaso.class
+vSexual.class
+GuardarFuncionario.class
 capturarDatos.class
+vEmocional.class
+vFisica.class
+vFuncionario.class

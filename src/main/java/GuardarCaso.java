@@ -18,7 +18,7 @@ public class GuardarCaso extends HttpServlet {
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "cRojas34";
+    private static final String PASSWORD = "erpalacios";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -69,16 +69,36 @@ return;
 HttpSession session = request.getSession();
 session.setAttribute("cedulaCaso", cedula);
  session.setAttribute("tipoViolencia", tipoViolencia);
-// despacha la petición a /vDigital (el nuevo servlet)
+// despacha la petición a /vEconomica (el nuevo servlet)
 request.getRequestDispatcher("/vEconomica").forward(request, response);
 return; 
-                      
-                    } else if (tipoViolencia.equals("Violencia Psicologica")) {
-                        response.sendRedirect("vPsicologica.html");
+                    } else if (tipoViolencia.equals("Violencia Emocional")) {
+                        System.out.println(">>> Redirigiendo a vEmocional.html");
+                        // tras guardar el caso y guardar la cédula en sesión...
+HttpSession session = request.getSession();
+session.setAttribute("cedulaCaso", cedula);
+session.setAttribute("tipoViolencia", tipoViolencia);
+// despacha la petición a /vEmocional (el nuevo servlet)
+request.getRequestDispatcher("/vEmocional").forward(request, response);
+return;
+                    } else if (tipoViolencia.equals("Violencia Física")) {
+                        System.out.println(">>> Redirigiendo a vFisica.html");
+                        // tras guardar el caso y guardar la cédula en sesión...
+HttpSession session = request.getSession();
+session.setAttribute("cedulaCaso", cedula);
+session.setAttribute("tipoViolencia", tipoViolencia);
+// despacha la petición a /vFisica (el nuevo servlet)
+request.getRequestDispatcher("/vFisica").forward(request, response);
+return;
                     } else if (tipoViolencia.equals("Violencia Sexual")) {
-                        response.sendRedirect("vSexual.html");
-                    } else if (tipoViolencia.equals("Violencia Fisica")) {
-                        response.sendRedirect("vEconomica.html");
+                        System.out.println(">>> Redirigiendo a vSexual.html");
+                        // tras guardar el caso y guardar la cédula en sesión...
+HttpSession session = request.getSession();
+session.setAttribute("cedulaCaso", cedula);
+session.setAttribute("tipoViolencia", tipoViolencia);
+// despacha la petición a /vSexual (el nuevo servlet)
+request.getRequestDispatcher("/vSexual").forward(request, response);
+return;
                     }
                     out.println("<h3>¡Caso guardado exitosamente!</h3>");
                     System.out.println(">>> tipoViolencia recibido: [" + tipoViolencia + "]");
