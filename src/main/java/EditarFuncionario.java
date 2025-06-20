@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,9 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/EditarFuncionario")
 public class EditarFuncionario extends HttpServlet {
-
+    
     private static final long serialVersionUID = 1L;
-
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
     private static final String PASSWORD = "erpalacios";
@@ -25,96 +23,70 @@ public class EditarFuncionario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        String idFuncionario = request.getParameter("cedula");
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        String idEmpleadoBuscado = request.getParameter("cedula"); // asumo que viene por "cedula"
-
         try (PrintWriter out = response.getWriter()) {
+
             out.println("<!DOCTYPE html>");
-            out.println("<html lang='es'>");
-            out.println("<head>");
+            out.println("<html lang='es'><head>");
             out.println("<meta charset='UTF-8'>");
             out.println("<title>Editar Funcionario</title>");
             out.println("<link rel='stylesheet' href='estilo.css'>");
-            out.println("</head>");
-            out.println("<body>");
+            out.println("</head><body>");
             out.println("<div class='ventana'>");
+            out.println("<h2>Editar Funcionario</h2>");
 
-            if (idEmpleadoBuscado == null || idEmpleadoBuscado.isEmpty()) {
-                out.println("<h3>Error: No se proporcionó un ID de empleado válido.</h3>");
-            } else {
-                try {
-                    Class.forName("com.mysql.cj.jdbc.Driver");
-                    try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                        String sql = "SELECT Nombre, Lugar, Direccion, Telefono, Cedula, Solucion, CedulaCaso FROM oficinaregional WHERE IDempleado = ?";
-                        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                            stmt.setString(1, idEmpleadoBuscado);
-                            ResultSet rs = stmt.executeQuery();
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 
-                            if (rs.next()) {
-                                String nombre = rs.getString("Nombre");
-                                String lugar = rs.getString("Lugar");
-                                String direccion = rs.getString("Direccion");
-                                String telefono = rs.getString("Telefono");
-                                String cedula = rs.getString("Cedula");
-                                String solucion = rs.getString("Solucion");
-                                String cedulaCaso = rs.getString("CedulaCaso");
+                String sql = "SELECT * FROM oficinaregional WHERE IDempleado = ?";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, idFuncionario);
+                ResultSet rs = stmt.executeQuery();
 
-                                out.println("<h2>Editar Información del Funcionario</h2>");
-                                out.println("<form action='ActualizarFuncionario' method='post'>");
-                                out.println("<input type='hidden' name='idEmpleado' value='" + idEmpleadoBuscado + "'>");
+                if (rs.next()) {
+                    out.println("<form action='GuardarEdicionFuncionario' method='post'>");
 
-                                out.println("<label for='nombre'>Nombre:</label>");
-                                out.println("<input type='text' id='nombre' name='Nombre' value='" + nombre + "' required><br>");
+                    out.printf("<input type='hidden' name='idEmpleado' value='%s'>%n", rs.getString("IDempleado"));
 
-                                out.println("<label for='lugar'>Lugar:</label>");
-                                out.println("<input type='text' id='lugar' name='Lugar' value='" + lugar + "' required><br>");
+                    out.println("<label>Nombre:</label>");
+                    out.printf("<input type='text' name='nombre' value='%s' required><br>", rs.getString("Nombre"));
 
-                                out.println("<label for='direccion'>Dirección:</label>");
-                                out.println("<input type='text' id='direccion' name='Direccion' value='" + direccion + "' required><br>");
+                    out.println("<label>Cédula:</label>");
+                    out.printf("<input type='text' name='cedulaFuncionario' value='%s' required><br>", rs.getString("Cedula"));
 
-                                out.println("<label for='telefono'>Teléfono:</label>");
-                                out.println("<input type='text' id='telefono' name='Telefono' value='" + telefono + "' required><br>");
+                    out.println("<label>Teléfono:</label>");
+                    out.printf("<input type='text' name='telefono' value='%s' required><br>", rs.getString("Telefono"));
 
-                                out.println("<label for='cedula'>Cédula:</label>");
-                                out.println("<input type='text' id='cedula' name='Cedula' value='" + cedula + "' required><br>");
+                    out.println("<label>Dirección:</label>");
+                    out.printf("<input type='text' name='direccion' value='%s' required><br>", rs.getString("Direccion"));
 
-                                out.println("<label for='solucion'>Solución:</label>");
-                                out.println("<textarea id='solucion' name='Solucion' rows='3'>" + solucion + "</textarea><br>");
+                    out.println("<label>Lugar:</label>");
+                    out.printf("<input type='text' name='lugar' value='%s' required><br>", rs.getString("Lugar"));
 
-                                out.println("<label for='cedulaCaso'>Cédula Caso:</label>");
-                                out.println("<input type='text' id='cedulaCaso' name='CedulaCaso' value='" + cedulaCaso + "'><br>");
+                    out.println("<label>Solución propuesta:</label>");
+                    out.printf("<textarea name='solucion' required>%s</textarea><br>", rs.getString("Solucion"));
 
-                                out.println("<div class='botones'>");
-                                out.println("<button type='submit'>Guardar Cambios</button>");
-                                out.println("</div>");
+                    out.printf("<input type='hidden' name='cedulaCaso' value='%s'>%n", rs.getString("CedulaCaso"));
 
-                                out.println("</form>");
-                            } else {
-                                out.println("<h3>No se encontró un funcionario con ese ID.</h3>");
-                            }
-                        }
-                    }
-                } catch (SQLException | ClassNotFoundException e) {
-                    out.println("<p>Error al acceder a la base de datos: " + e.getMessage() + "</p>");
+                    out.println("<button type='submit'>Guardar cambios</button>");
+                    out.println("</form>");
+                } else {
+                    out.println("<p>No se encontró un funcionario con ese ID.</p>");
                 }
+
+                conn.close();
+            } catch (Exception e) {
+                out.println("<p>Error: " + e.getMessage() + "</p>");
             }
 
-            // Botones para regresar igual que en editar caso
-            out.println("<div class='botones'>");
-            out.println("<form action='ConsultarOficinas' method='post' style='display:inline;'>");
-            out.println("<button type='submit'>Volver a lista de oficinas</button>");
+            out.println("<form action='ConsultarOficinas' method='post'>");
+            out.println("<button type='submit'>Volver</button>");
             out.println("</form>");
-
-            out.println("<form action='Menu.html' method='get' style='display:inline; margin-left:10px;'>");
-            out.println("<button type='submit'>Volver al menú</button>");
-            out.println("</form>");
-            out.println("</div>");
-
-            out.println("</div>");
-            out.println("</body>");
-            out.println("</html>");
+            out.println("</div></body></html>");
         }
     }
 }

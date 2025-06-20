@@ -46,10 +46,12 @@ public class BuscarCaso extends HttpServlet {
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                    String sql = "SELECT * FROM caso WHERE Cedula = ?";
-                    try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                        stmt.setString(1, cedulaBuscada);
-                        try (ResultSet rs = stmt.executeQuery()) {
+
+                    // Obtener caso
+                    String sqlCaso = "SELECT * FROM caso WHERE Cedula = ?";
+                    try (PreparedStatement stmtCaso = conn.prepareStatement(sqlCaso)) {
+                        stmtCaso.setString(1, cedulaBuscada);
+                        try (ResultSet rs = stmtCaso.executeQuery()) {
                             if (rs.next()) {
                                 out.println("<p><strong>Cédula:</strong> " + rs.getString("Cedula") + "</p>");
                                 out.println("<p><strong>Nombre:</strong> " + rs.getString("Nombre") + "</p>");
@@ -65,10 +67,9 @@ public class BuscarCaso extends HttpServlet {
                                 out.println("<p><strong>Agresor:</strong> " + rs.getString("Agresor") + "</p>");
                                 out.println("<p><strong>Relacion con Agresor:</strong> " + rs.getString("RelacionAgresor") + "</p>");
                                 out.println("<p><strong>Genero de Agresor:</strong> " + rs.getString("GeneroAgresor") + "</p>");
+
                                 String tipoViolencia = rs.getString("TipoViolencia");
-
                                 out.println("<p><strong>Tipo de violencia:</strong> " + tipoViolencia + "</p>");
-
                                 switch (tipoViolencia) {
                                     case "Violencia Económica":
                                         out.println("<p><strong>TipoIngreso:</strong> " + rs.getString("TipoIngreso") + "</p>");
@@ -95,28 +96,40 @@ public class BuscarCaso extends HttpServlet {
                             }
                         }
                     }
+
+                    // Buscar si hay funcionario asignado
+                    String sqlFunc = "SELECT * FROM oficinaregional WHERE CedulaCaso = ?";
+                    try (PreparedStatement stmtFunc = conn.prepareStatement(sqlFunc)) {
+                        stmtFunc.setString(1, cedulaBuscada);
+                        try (ResultSet rs = stmtFunc.executeQuery()) {
+                            if (rs.next()) {
+                                out.println("<h3>Funcionario asignado al caso</h3>");
+                                out.println("<p><strong>Nombre:</strong> " + rs.getString("Nombre") + "</p>");
+                                out.println("<p><strong>Cédula:</strong> " + rs.getString("Cedula") + "</p>");
+                                out.println("<p><strong>ID Empleado:</strong> " + rs.getString("IDempleado") + "</p>");
+                                out.println("<p><strong>Teléfono:</strong> " + rs.getString("Telefono") + "</p>");
+                                out.println("<p><strong>Dirección:</strong> " + rs.getString("Direccion") + "</p>");
+                                out.println("<p><strong>Lugar:</strong> " + rs.getString("Lugar") + "</p>");
+                                out.println("<p><strong>Fecha Atención:</strong> " + rs.getString("FechaAtencion") + "</p>");
+                                out.println("<p><strong>Hora Atención:</strong> " + rs.getString("HoraAtencion") + "</p>");
+                                out.println("<p><strong>Solución:</strong> " + rs.getString("Solucion") + "</p>");
+                            } else {
+                                out.println("<p><em>No hay funcionario asignado a este caso.</em></p>");
+                            }
+                        }
+                    }
+
                 }
-            } catch (SQLException e) {
-                out.println("<p>Error en la base de datos: " + e.getMessage() + "</p>");
-            } catch (ClassNotFoundException e) {
-                throw new ServletException("No se pudo cargar el driver JDBC", e);
+            } catch (SQLException | ClassNotFoundException e) {
+                out.println("<p>Error al consultar: " + e.getMessage() + "</p>");
             }
 
-            // Botones
             out.println("<div class='botones'>");
-            out.println("<form action='ConsultarCasos' method='post' style='display:inline;'>");
-            out.println("<button type='submit'>Volver a lista de casos</button>");
-            out.println("</form>");
-
-            out.println("<form action='Menu.html' method='get' style='display:inline;'>");
-            out.println("<button type='submit'>Volver al menú</button>");
-            out.println("</form>");
+            out.println("<form action='ConsultarCasos' method='post'><button type='submit'>Volver a lista de casos</button></form>");
+            out.println("<form action='Menu.html' method='get'><button type='submit'>Volver al menú</button></form>");
             out.println("</div>");
 
-            out.println("</div>");
-            out.println("</body>");
-            out.println("</html>");
-
+            out.println("</div></body></html>");
         }
     }
 }
