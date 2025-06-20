@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -10,15 +11,18 @@ import java.time.format.DateTimeFormatter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/GuardarFuncionario")
 public class GuardarFuncionario extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -84,4 +88,3 @@ public class GuardarFuncionario extends HttpServlet {
         }
     }
 }
-

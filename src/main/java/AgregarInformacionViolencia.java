@@ -19,7 +19,7 @@ public class AgregarInformacionViolencia extends HttpServlet {
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -80,12 +80,12 @@ public class AgregarInformacionViolencia extends HttpServlet {
             String generoAgresor = request.getParameter("genero");
 
             sql = "UPDATE caso SET "
-                + "TipoLesion = '" + tipoLesion + "', "
-                + "AtencionMedica = '" + AtencionMedica + "', "
-                + "Agresor = '" + nombreAgresor + "', "
-                + "RelacionAgresor = '" + relacionAgresor + "', "
-                + "GeneroAgresor = '" + generoAgresor + "' "
-                + "WHERE cedula = '" + acceso + "'";
+                    + "TipoLesion = '" + tipoLesion + "', "
+                    + "AtencionMedica = '" + AtencionMedica + "', "
+                    + "Agresor = '" + nombreAgresor + "', "
+                    + "RelacionAgresor = '" + relacionAgresor + "', "
+                    + "GeneroAgresor = '" + generoAgresor + "' "
+                    + "WHERE cedula = '" + acceso + "'";
         } else if (tipoViolencia.equals("Violencia Sexual")) {
             String TipoAbusoSexual = request.getParameter("abuso");
             String nombreAgresor = request.getParameter("nombre");
@@ -93,11 +93,11 @@ public class AgregarInformacionViolencia extends HttpServlet {
             String generoAgresor = request.getParameter("genero");
 
             sql = "UPDATE caso SET "
-                + "TipoAbusoSexual = '" + TipoAbusoSexual + "', "
-                + "Agresor = '" + nombreAgresor + "', "
-                + "RelacionAgresor = '" + relacionAgresor + "', "
-                + "GeneroAgresor = '" + generoAgresor + "' "
-                + "WHERE cedula = '" + acceso + "'";
+                    + "TipoAbusoSexual = '" + TipoAbusoSexual + "', "
+                    + "Agresor = '" + nombreAgresor + "', "
+                    + "RelacionAgresor = '" + relacionAgresor + "', "
+                    + "GeneroAgresor = '" + generoAgresor + "' "
+                    + "WHERE cedula = '" + acceso + "'";
         }
         System.out.println(">>> cedula: " + acceso);
 

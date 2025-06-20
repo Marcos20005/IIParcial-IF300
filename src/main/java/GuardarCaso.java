@@ -18,7 +18,7 @@ public class GuardarCaso extends HttpServlet {
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
