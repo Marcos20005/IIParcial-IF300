@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/EliminarCaso")
-public class EliminarCaso extends HttpServlet {
+@WebServlet("/EliminarUsuario")
+public class EliminarUsuario extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+    
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
     private static final String PASSWORD = "erpalacios";
@@ -27,45 +28,45 @@ public class EliminarCaso extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
-        String cedula = request.getParameter("cedula");
+        String login = request.getParameter("login");
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html lang='es'>");
             out.println("<head>");
             out.println("<meta charset='UTF-8'>");
-            out.println("<title>Eliminar Caso</title>");
+            out.println("<title>Eliminar Usuario</title>");
             out.println("<link rel='stylesheet' href='estilo.css'>");
             out.println("</head>");
             out.println("<body>");
             out.println("<div class='ventana'>");
 
-            if (cedula == null || cedula.trim().isEmpty()) {
-                out.println("<h3>Error: No se proporcionó una cédula válida.</h3>");
+            if (login == null || login.trim().isEmpty()) {
+                out.println("<h3>Error: No se proporcionó un ID de usuario válido.</h3>");
             } else {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                        String sql = "DELETE FROM caso WHERE Cedula = ?";
+                        String sql = "DELETE FROM usuario WHERE login = ?";
                         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                            stmt.setString(1, cedula);
+                            stmt.setString(1, login);
                             int filasAfectadas = stmt.executeUpdate();
 
                             if (filasAfectadas > 0) {
-                                out.println("<h3>Caso eliminado exitosamente.</h3>");
+                                out.println("<h3>Usuario eliminado exitosamente.</h3>");
                             } else {
-                                out.println("<h3>No se encontró ningún caso con esa cédula.</h3>");
+                                out.println("<h3>No se encontró ningún usuario con ese ID.</h3>");
                             }
                         }
                     }
                 } catch (ClassNotFoundException | SQLException e) {
-                    out.println("<p>Error al eliminar el caso: " + e.getMessage() + "</p>");
+                    out.println("<p>Error al eliminar el usuario: " + e.getMessage() + "</p>");
                 }
             }
 
             out.println("<div class='botones'>");
-            out.println("<form action='ConsultarCasos' method='post'>");
-            out.println("<button type='submit'>Volver a lista de casos</button>");
+            out.println("<form action='ConsultarUsuarios' method='post'>");
+            out.println("<button type='submit'>Volver a lista de usuarios</button>");
             out.println("</form>");
 
             out.println("<form action='Menu.html' method='get'>");

@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/EliminarCaso")
-public class EliminarCaso extends HttpServlet {
+@WebServlet("/EliminarFuncionario")
+public class EliminarFuncionario extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class EliminarCaso extends HttpServlet {
             out.println("<html lang='es'>");
             out.println("<head>");
             out.println("<meta charset='UTF-8'>");
-            out.println("<title>Eliminar Caso</title>");
+            out.println("<title>Eliminar Funcionario</title>");
             out.println("<link rel='stylesheet' href='estilo.css'>");
             out.println("</head>");
             out.println("<body>");
@@ -46,26 +46,26 @@ public class EliminarCaso extends HttpServlet {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                        String sql = "DELETE FROM caso WHERE Cedula = ?";
+                        String sql = "DELETE FROM oficinaregional WHERE IDempleado = ?";
                         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                             stmt.setString(1, cedula);
                             int filasAfectadas = stmt.executeUpdate();
 
                             if (filasAfectadas > 0) {
-                                out.println("<h3>Caso eliminado exitosamente.</h3>");
+                                out.println("<h3>Funcionario eliminado exitosamente.</h3>");
                             } else {
-                                out.println("<h3>No se encontró ningún caso con esa cédula.</h3>");
+                                out.println("<h3>No se encontró ningún funcionario con ese ID.</h3>");
                             }
                         }
                     }
                 } catch (ClassNotFoundException | SQLException e) {
-                    out.println("<p>Error al eliminar el caso: " + e.getMessage() + "</p>");
+                    out.println("<p>Error al eliminar el funcionario: " + e.getMessage() + "</p>");
                 }
             }
 
             out.println("<div class='botones'>");
-            out.println("<form action='ConsultarCasos' method='post'>");
-            out.println("<button type='submit'>Volver a lista de casos</button>");
+            out.println("<form action='ConsultarOficinas' method='post'>");
+            out.println("<button type='submit'>Volver a lista de oficinas</button>");
             out.println("</form>");
 
             out.println("<form action='Menu.html' method='get'>");

@@ -38,7 +38,7 @@ public class capturarDatos extends HttpServlet {
 
             Class.forName("com.mysql.cj.jdbc.Driver"); // Usa el driver actualizado para MySQL 8+
 
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "cRojas34");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "erpalacios");
             con.setAutoCommit(true);
 
             System.out.println("Conexión exitosa...");

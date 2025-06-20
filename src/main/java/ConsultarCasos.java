@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -21,7 +20,7 @@ public class ConsultarCasos extends HttpServlet {
     // Define your DB credentials here
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "cRojas34";
+    private static final String PASSWORD = "erpalacios";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -69,6 +68,7 @@ public class ConsultarCasos extends HttpServlet {
 
             out.println("<div class='botones'>");
             out.println("<button onclick=\"window.location.href='AgregarCaso.html'\">Ingresar nuevo Caso</button>");
+            
             out.println("<form action='BuscarCaso' method='post'>");
             out.println("<input type='hidden' name='cedula' id='cedulaOculta'>");
             out.println("<button type='submit' onclick=\"document.getElementById('cedulaOculta').value = document.getElementById('cedula').value;\">Buscar</button>");
@@ -81,8 +81,14 @@ public class ConsultarCasos extends HttpServlet {
 
             out.println("<form action='EliminarCaso' method='post'>");
             out.println("<input type='hidden' name='cedula' id='cedulaEliminarOculta'>");
-            out.println("<button type='submit' onclick=\"document.getElementById('cedulaEliminarOculta').value = document.getElementById('cedula').value;\">Eliminar</button>");
+            out.println("<button type='submit' onclick=\"document.getElementById('cedulaEliminarOculta').value = document.getElementById('cedula').value; return confirmarEliminarCaso();\">Eliminar</button>");
             out.println("</form>");
+
+            out.println("<script>");
+            out.println("function confirmarEliminarCaso() {");
+            out.println("return confirm('¿Está seguro de que desea eliminar este caso?');");
+            out.println("}");
+            out.println("</script>");
 
             out.println("</div>");
             out.println("</body>");

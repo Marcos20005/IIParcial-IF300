@@ -20,7 +20,7 @@ public class ConsultarUsuarios extends HttpServlet {
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "cRojas34";
+    private static final String PASSWORD = "erpalacios";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -73,11 +73,28 @@ public class ConsultarUsuarios extends HttpServlet {
             out.println("<button type=\"submit\">Ingresar nuevo usuario</button>");
             out.println("</form>");
 
-            out.println("<button>Buscar</button>");
-            out.println("<button>Editar</button>");
-            out.println("<button>Eliminar</button>");
-            out.println("</div>");
+            out.println("<form action='BuscarUsuario' method='post'>");
+            out.println("<input type='hidden' name='login' id='loginOculto'>");
+            out.println("<button type='submit' onclick=\"document.getElementById('loginOculto').value = document.getElementById('cedula').value;\">Buscar</button>");
+            out.println("</form>");
 
+            out.println("<form action='EditarUsuario' method='post'>");
+            out.println("<input type='hidden' name='login' id='loginEditarOculto'>");
+            out.println("<button type='submit' onclick=\"document.getElementById('loginEditarOculto').value = document.getElementById('cedula').value;\">Editar</button>");
+            out.println("</form>");
+
+            out.println("<form action='EliminarUsuario' method='post'>");
+            out.println("<input type='hidden' name='login' id='loginEliminarOculto'>");
+            out.println("<button type='submit' onclick=\"document.getElementById('loginEliminarOculto').value = document.getElementById('cedula').value; return confirmarEliminacion();\">Eliminar</button>");
+            out.println("</form>");
+
+            out.println("<script>");
+            out.println("function confirmarEliminacion() {");
+            out.println("  return confirm('¿Estás seguro de que desea eliminar este usuario?');");
+            out.println("}");
+            out.println("</script>");
+
+            out.println("</div>");
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");

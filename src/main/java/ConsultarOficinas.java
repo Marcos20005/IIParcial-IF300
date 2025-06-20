@@ -20,7 +20,7 @@ public class ConsultarOficinas extends HttpServlet {
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "cRojas34";
+    private static final String PASSWORD = "erpalacios";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -74,11 +74,28 @@ public class ConsultarOficinas extends HttpServlet {
             out.println("<button type=\"submit\">Ingresar respuesta de funcionario</button>");
             out.println("</form>");
 
-            out.println("<button>Buscar</button>");
-            out.println("<button>Editar</button>");
-            out.println("<button>Eliminar</button>");
-            out.println("</div>");
+            out.println("<form action='BuscarOficina' method='post'>");
+            out.println("<input type='hidden' name='cedula' id='cedulaOficinaOculta'>");
+            out.println("<button type='submit' onclick=\"document.getElementById('cedulaOficinaOculta').value = document.getElementById('cedula').value;\">Buscar</button>");
+            out.println("</form>");
 
+            out.println("<form action='EditarFuncionario' method='post'>");
+            out.println("<input type='hidden' name='cedula' id='cedulaOficinaEditar'>");
+            out.println("<button type='submit' onclick=\"document.getElementById('cedulaOficinaEditar').value = document.getElementById('cedula').value;\">Editar</button>");
+            out.println("</form>");
+
+            out.println("<form action='EliminarFuncionario' method='post'>");
+            out.println("<input type='hidden' name='cedula' id='cedulaOficinaEliminar'>");
+            out.println("<button type='submit' onclick=\"document.getElementById('cedulaOficinaEliminar').value = document.getElementById('cedula').value; return confirmarEliminacion();\">Eliminar</button>");
+            out.println("</form>");
+
+            out.println("<script>");
+            out.println("function confirmarEliminacion() {");
+            out.println("  return confirm('¿Estás seguro de que desea eliminar este funcionario?');");
+            out.println("}");
+            out.println("</script>");
+            
+            out.println("</div>");
             out.println("</div>");
             out.println("</body>");
             out.println("</html>");

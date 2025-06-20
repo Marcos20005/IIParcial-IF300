@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/EliminarCaso")
-public class EliminarCaso extends HttpServlet {
+@WebServlet("/ActualizarUsuario")
+public class ActualizarUsuario extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -24,51 +24,66 @@ public class EliminarCaso extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
 
+        String login = request.getParameter("login"); // ID para buscar
         String cedula = request.getParameter("cedula");
+        String nombre1 = request.getParameter("nombre1");
+        String nombre2 = request.getParameter("nombre2");
+        String apellido1 = request.getParameter("apellido1");
+        String apellido2 = request.getParameter("apellido2");
+        String clave = request.getParameter("clave");
 
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html lang='es'>");
             out.println("<head>");
             out.println("<meta charset='UTF-8'>");
-            out.println("<title>Eliminar Caso</title>");
+            out.println("<title>Actualizar Usuario</title>");
             out.println("<link rel='stylesheet' href='estilo.css'>");
             out.println("</head>");
             out.println("<body>");
             out.println("<div class='ventana'>");
+            out.println("<h2>Actualizar Información del Usuario</h2>");
 
-            if (cedula == null || cedula.trim().isEmpty()) {
-                out.println("<h3>Error: No se proporcionó una cédula válida.</h3>");
+            if (login == null || login.isEmpty()) {
+                out.println("<p>Error: El login es obligatorio para actualizar el usuario.</p>");
             } else {
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                        String sql = "DELETE FROM caso WHERE Cedula = ?";
+                        String sql = "UPDATE usuario SET cedula = ?, nombre1 = ?, nombre2 = ?, apellido1 = ?, apellido2 = ?, clave = ? WHERE login = ?";
                         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                             stmt.setString(1, cedula);
-                            int filasAfectadas = stmt.executeUpdate();
+                            stmt.setString(2, nombre1);
+                            stmt.setString(3, nombre2);
+                            stmt.setString(4, apellido1);
+                            stmt.setString(5, apellido2);
+                            stmt.setString(6, clave);
+                            stmt.setString(7, login);
 
-                            if (filasAfectadas > 0) {
-                                out.println("<h3>Caso eliminado exitosamente.</h3>");
+                            int filasActualizadas = stmt.executeUpdate();
+
+                            if (filasActualizadas > 0) {
+                                out.println("<p>✅ Usuario actualizado correctamente.</p>");
                             } else {
-                                out.println("<h3>No se encontró ningún caso con esa cédula.</h3>");
+                                out.println("<p>❌ No se pudo actualizar el usuario. No se encontró el login.</p>");
                             }
                         }
                     }
                 } catch (ClassNotFoundException | SQLException e) {
-                    out.println("<p>Error al eliminar el caso: " + e.getMessage() + "</p>");
+                    out.println("<p>Error al actualizar la base de datos: " + e.getMessage() + "</p>");
                 }
             }
 
+            // Botones siempre visibles
             out.println("<div class='botones'>");
-            out.println("<form action='ConsultarCasos' method='post'>");
-            out.println("<button type='submit'>Volver a lista de casos</button>");
+            out.println("<form action='ConsultarUsuarios' method='post' style='display:inline;'>");
+            out.println("<button type='submit'>Volver a lista de usuarios</button>");
             out.println("</form>");
 
-            out.println("<form action='Menu.html' method='get'>");
+            out.println("<form action='Menu.html' method='get' style='display:inline; margin-left:10px;'>");
             out.println("<button type='submit'>Volver al menú</button>");
             out.println("</form>");
             out.println("</div>");

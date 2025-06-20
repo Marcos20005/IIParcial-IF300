@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -20,7 +19,7 @@ public class BuscarCaso extends HttpServlet {
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "cRojas34";
+    private static final String PASSWORD = "erpalacios";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -63,7 +62,7 @@ public class BuscarCaso extends HttpServlet {
                                 out.println("<p><strong>EstadoCivil:</strong> " + rs.getString("EstadoCivil") + "</p>");
                                 out.println("<p><strong>Ocupacion:</strong> " + rs.getString("Ocupacion") + "</p>");
                                 out.println("<p><strong>Nacionalidad:</strong> " + rs.getString("Nacionalidad") + "</p>");
- out.println("<p><strong>Agresor:</strong> " + rs.getString("Agresor") + "</p>");
+                                out.println("<p><strong>Agresor:</strong> " + rs.getString("Agresor") + "</p>");
                                 out.println("<p><strong>Relacion con Agresor:</strong> " + rs.getString("RelacionAgresor") + "</p>");
                                 out.println("<p><strong>Genero de Agresor:</strong> " + rs.getString("GeneroAgresor") + "</p>");
                                 String tipoViolencia = rs.getString("TipoViolencia");
