@@ -12,14 +12,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+//Inicialiazación de servlet para editar la información de un usuario en la base de datos.
 @WebServlet("/EditarUsuario")
 public class EditarUsuario extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+
+    // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -30,6 +34,8 @@ public class EditarUsuario extends HttpServlet {
 
         String loginBuscado = request.getParameter("login");
 
+
+        // Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
 
             out.println("<!DOCTYPE html>");
@@ -45,6 +51,8 @@ public class EditarUsuario extends HttpServlet {
             if (loginBuscado == null || loginBuscado.isEmpty()) {
                 out.println("<h3>Error: No se proporcionó un ID válido.</h3>");
             } else {
+
+                // Buscar el usuario con ese login y se empieza lo necesario para ejecutar la consulta.
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {

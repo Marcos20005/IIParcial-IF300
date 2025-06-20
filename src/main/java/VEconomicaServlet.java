@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+// Declaración de servlet para manejar la información adicional del caso de violencia económica.
 @WebServlet("/vEconomica")
 public class VEconomicaServlet extends HttpServlet {
 
@@ -27,7 +29,9 @@ public class VEconomicaServlet extends HttpServlet {
                 ? (String) session.getAttribute("tipoViolencia")
                 : null;
 
+
         response.setContentType("text/html;charset=UTF-8");
+        // Inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
 
             out.println("<!DOCTYPE html>");

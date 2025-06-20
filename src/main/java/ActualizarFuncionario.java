@@ -10,20 +10,25 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+//Declaracion de servlet para actualizar la información de un funcionario en la base de datos.
 @WebServlet("/ActualizarFuncionario")
 public class ActualizarFuncionario extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+
+
+    // Uso del método doPost para manejar la solicitud de actualización del funcionario.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
 
+        //Declaracion de los parámetros recibidos desde el formulario de editar.
         String idEmpleado = request.getParameter("idEmpleado");
         String nombre = request.getParameter("nombre");
         String cedulaFuncionario = request.getParameter("cedulaFuncionario");
@@ -33,6 +38,9 @@ public class ActualizarFuncionario extends HttpServlet {
         String telefono = request.getParameter("telefono");
         String cedulaCaso = request.getParameter("cedulaCaso");
 
+
+
+        //Se empieza la conexion con la base de datos y actualizar los datos.
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {

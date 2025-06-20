@@ -9,11 +9,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
+// Declaración de servlet para manejar la información adicional del caso de Violencia Digital.
 @WebServlet("/vDigital")
 public class VDigitalServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+
+    // Uso del método doPost para manejar la solicitud de información adicional del caso de Violencia Digital.
     @Override
     protected void doPost(HttpServletRequest request,
             HttpServletResponse response)
@@ -29,6 +33,8 @@ public class VDigitalServlet extends HttpServlet {
                 : null;
 
         response.setContentType("text/html;charset=UTF-8");
+
+        // Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html lang=\"es\"><head>");

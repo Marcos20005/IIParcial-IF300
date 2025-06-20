@@ -14,15 +14,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+//Delaración de servlet para guardar un funcionario en la base de datos.
 @WebServlet("/GuardarFuncionario")
 public class GuardarFuncionario extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
+    
 
+    // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "crojas34";
 
+
+    // Uso del método doPost para manejar la solicitud de guardar un funcionario.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -50,6 +56,8 @@ public class GuardarFuncionario extends HttpServlet {
             String fechaFormateada = fechaActual.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
             String horaFormateada = horaActual.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
 
+
+            // Se inicia la conexión a la base de datos y se prepara la sentencia SQL para insertar el funcionario.
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
                  Statement stmt = conn.createStatement()) {

@@ -11,22 +11,32 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// Declaración de servlet para editar la información de un funcionario en la base de datos.
 @WebServlet("/EditarFuncionario")
 public class EditarFuncionario extends HttpServlet {
     
     private static final long serialVersionUID = 1L;
+
+    // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+
+    // Uso del método doPost para manejar la solicitud de edición de un funcionario.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+
+                // Obtención del ID del funcionario desde la solicitud.
         String idFuncionario = request.getParameter("cedula");
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
+
+        // Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
 
             out.println("<!DOCTYPE html>");
@@ -38,6 +48,8 @@ public class EditarFuncionario extends HttpServlet {
             out.println("<div class='ventana'>");
             out.println("<h2>Editar Funcionario</h2>");
 
+
+            // Se inicia la conexión a la base de datos y se busca el funcionario por ID.
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);

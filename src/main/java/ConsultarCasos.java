@@ -20,7 +20,7 @@ public class ConsultarCasos extends HttpServlet {
     // Define your DB credentials here
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -29,6 +29,8 @@ public class ConsultarCasos extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
 
+
+        // Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
 
             out.println("<!DOCTYPE html>");

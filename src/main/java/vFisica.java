@@ -8,21 +8,27 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+// Declaración de servlet para manejar la información adicional del caso de violencia física.
 @WebServlet("/vFisica")
 public class vFisica extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+
+    // Uso del método doPost para manejar la solicitud de información adicional del caso de violencia física.
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
             throws ServletException, IOException {
 
+
+                // Recupera la cédula y tipo de violencia desde la sesión
         HttpSession session = request.getSession(false);
         String cedula = (session != null) ? (String) session.getAttribute("cedulaCaso") : "";
         String tipoViolencia = (session != null) ? (String) session.getAttribute("tipoViolencia") : "";
 
         response.setContentType("text/html;charset=UTF-8");
+        // Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html lang=\"es\"><head>");

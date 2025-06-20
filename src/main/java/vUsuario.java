@@ -8,17 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// Declaración de servlet para crear un nuevo usuario en el sistema.
 @WebServlet("/vUsuario")
 public class vUsuario extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+
+    // Uso del método doPost para manejar la solicitud de creación de un nuevo usuario.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         response.setContentType("text/html;charset=UTF-8");
 
+
+        // Se establece la codificación de caracteres para la solicitud y respuesta.
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html lang='es'>");

@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// Declaración de servlet para buscar un usuario por login y mostrar su información.
 @WebServlet("/BuscarUsuario")
 public class BuscarUsuario extends HttpServlet {
 
@@ -19,8 +21,9 @@ public class BuscarUsuario extends HttpServlet {
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+    // Uso del método doPost para manejar la solicitud de búsqueda de un usuario por login.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,6 +33,8 @@ public class BuscarUsuario extends HttpServlet {
 
         String loginBuscado = request.getParameter("login");
 
+
+        // Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
 
             out.println("<!DOCTYPE html>");
@@ -43,6 +48,8 @@ public class BuscarUsuario extends HttpServlet {
             out.println("<div class='ventana'>");
             out.println("<h2>Información del usuario</h2>");
 
+
+            //Se inicia la conexión a la base de datos y se busca el usuario por login.
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {

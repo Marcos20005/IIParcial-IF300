@@ -12,15 +12,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// Declaración de servlet para agregar la informacion de cada tipo de violencia.
 @WebServlet("/AgregarViolencia")
 public class AgregarInformacionViolencia extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+
+    // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+
+    // Uso del método doPost para manejar la solicitud de agregar información de violencia.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,7 +39,9 @@ public class AgregarInformacionViolencia extends HttpServlet {
         String tipoViolencia = request.getParameter("tipoViolencia");
         System.out.println(">>> tipoViolencia: " + tipoViolencia);
         String sql = "";
-// La SQL concatenada para insertar en la tabla 'casos':
+
+
+// Otencion de los parametros según el tipo de violencia seleccionado y se actualiza la fila dependiendo del tipo de violencia.
         if (tipoViolencia.equals("Violencia Digital")) {
             String plataformaAgresion = request.getParameter("plataformaAgresion");
             String agresorNombre = request.getParameter("agresorNombre");
@@ -101,6 +109,7 @@ public class AgregarInformacionViolencia extends HttpServlet {
         }
         System.out.println(">>> cedula: " + acceso);
 
+        // Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
             Class.forName("com.mysql.cj.jdbc.Driver");
 

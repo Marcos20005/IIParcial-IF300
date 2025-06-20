@@ -11,15 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// Declaración de servlet para eliminar un funcionario de la base de datos.
 @WebServlet("/EliminarFuncionario")
 public class EliminarFuncionario extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+
+    // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+
+    // Uso del método doPost para manejar la solicitud de eliminación de un funcionario.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,6 +35,8 @@ public class EliminarFuncionario extends HttpServlet {
 
         String cedula = request.getParameter("cedula");
 
+
+        // Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html lang='es'>");
@@ -44,6 +52,8 @@ public class EliminarFuncionario extends HttpServlet {
                 out.println("<h3>Error: No se proporcionó una cédula válida.</h3>");
             } else {
                 try {
+
+                    // Buscar el funcionario con esa cédula y eliminarlo, inicio de conexión a la base de datos. 
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                         String sql = "DELETE FROM oficinaregional WHERE IDempleado = ?";

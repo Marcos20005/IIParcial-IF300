@@ -17,9 +17,12 @@ public class capturarDatos extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+
+    // Datos de conexión a la base de datos
     @Override
     public void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 
+        // Declaración de variables para la conexión a la base de datos y para capturar los datos del usuario.
         String usuario;
         String clave;
         String query;
@@ -36,16 +39,16 @@ public class capturarDatos extends HttpServlet {
             usuario = req.getParameter("Usuario"); //recibe el usuario de la página index.html.
             clave = req.getParameter("Clave"); // recibe la clave de la página index.html.
 
+
+            // Se establece la conexión a la base de datos.
             Class.forName("com.mysql.cj.jdbc.Driver"); // Usa el driver actualizado para MySQL 8+
 
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "erpalacios");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "cRojas34");
             con.setAutoCommit(true);
-
-            System.out.println("Conexión exitosa...");
-            System.out.println("Prueba: ");
             
             stmt = con.createStatement();
             ResultSet rs1 = stmt.executeQuery("SELECT * FROM usuario");
+            // Verifica si el usuario y la clave son correctos.
             while (rs1.next()) {
                 if (usuario.equals(rs1.getString("login")) && clave.equals(rs1.getString("clave"))) {
                     res.sendRedirect("Menu.html");

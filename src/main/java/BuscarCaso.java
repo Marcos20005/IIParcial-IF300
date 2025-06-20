@@ -12,15 +12,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+//Declaracion de servlet para buscar un caso por cédula y mostrar la información del caso y del funcionario asignado.
 @WebServlet("/BuscarCaso")
 public class BuscarCaso extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+
+    // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+
+    // Uso del método doPost para manejar la solicitud de búsqueda de un caso por cédula.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,6 +36,8 @@ public class BuscarCaso extends HttpServlet {
 
         String cedulaBuscada = request.getParameter("cedula");
 
+
+        //Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
 
             out.println("<!DOCTYPE html>");
@@ -43,6 +51,9 @@ public class BuscarCaso extends HttpServlet {
             out.println("<div class='ventana'>");
             out.println("<h2>Información del caso</h2>");
 
+
+
+            //Se inicia la conexión a la base de datos y se busca el caso por cédula.
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {

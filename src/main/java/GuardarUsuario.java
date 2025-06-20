@@ -11,15 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+//Declaración de servlet para guardar un nuevo usuario en la base de datos.
 @WebServlet("/GuardarUsuario")
 public class GuardarUsuario extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+
+    // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+
+    // Uso del método doPost para manejar la solicitud de guardar un usuario.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -35,9 +41,10 @@ public class GuardarUsuario extends HttpServlet {
         String login = request.getParameter("login");
         String clave = request.getParameter("clave");
 
+
+        // Se inicia la conexion a la base de datos y se prepara la sentencia SQL para insertar el usuario.
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            System.out.println(">>> Conectando a la base de datos...");
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 String sql = "INSERT INTO usuario (cedula, nombre1, nombre2, apellido1, apellido2, login, clave) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {

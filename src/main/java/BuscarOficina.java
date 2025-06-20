@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+// Declaración de servlet para buscar información de un funcionario por su ID.
 @WebServlet("/BuscarOficina")
 public class BuscarOficina extends HttpServlet {
 
@@ -18,8 +20,10 @@ public class BuscarOficina extends HttpServlet {
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+
+    // Uso del método doPost para manejar la solicitud de búsqueda de un funcionario por ID.    
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -29,6 +33,7 @@ public class BuscarOficina extends HttpServlet {
 
         String idFuncionario = request.getParameter("cedula");
 
+        // Se inicia la respuesta al usuario.   
         try (PrintWriter out = response.getWriter()) {
 
             out.println("<!DOCTYPE html>");
@@ -39,6 +44,7 @@ public class BuscarOficina extends HttpServlet {
             out.println("</head><body>");
             out.println("<div class='ventana'>");
 
+            //Se inicia la conexión a la base de datos y se busca el funcionario por ID.
             try {
                 Class.forName("com.mysql.cj.jdbc.Driver");
                 Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);

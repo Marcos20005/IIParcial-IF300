@@ -1,3 +1,4 @@
+/* Fondo con imagen y overlay oscuro */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -11,137 +12,122 @@ body {
     background-size: cover;
 }
 
+/* Capa oscura semitransparente sobre el fondo */
+body::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
+}
+
 .contenedor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    position: relative;
+    z-index: 1; /* Para que esté arriba del overlay */
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
     width: 90%;
-    max-width: 600px;
-    gap: 15px;
 }
 
+/* Título */
 h1 {
-    text-align: center;
-    color: #007BFF;
     margin-bottom: 20px;
+    color: #222;
 }
 
-/* Modificación para los botones principales (fuera de .botones) */
-button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%; /* Asegura que ocupen todo el ancho disponible */
-    max-width: 300px; /* Limita el ancho máximo para que se vean bien */
-    padding: 12px;
-    background-color: #114174;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    font-weight: bold;
-    font-size: 16px;
-    cursor: pointer;
-    gap: 10px;
-    margin-bottom: 10px; /* Añade un espacio entre los botones si hay varios en esta sección */
-}
-
-button svg {
-    width: 24px;
-    height: 24px;
-    fill: white;
-}
-
-button:hover {
-    background-color: #0056b3;
-}
-
-.ventana {
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente para la ventana */
-    border: 2px solid #007BFF;
-    border-radius: 10px;
-    padding: 20px 30px;
-    width: 90%;
-    max-width: 600px;
-    box-sizing: border-box;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
-}
-
-h2 {
-    text-align: center;
-    color: #007BFF;
-    margin-bottom: 20px;
+/* Estilo de tabla y campos (no se usan en esta página específica pero los dejo por si los necesitas en otras) */
+table {
+    margin: 0 auto;
+    width: 100%;
 }
 
 label {
-    display: block;
-    margin-top: 10px;
-    margin-bottom: 5px;
+    font-weight: bold;
     color: #333;
-    font-weight: bold;
+    text-align: left;
+    display: block;
+    margin-bottom: 6px;
 }
 
-textarea,
-input[type="text"],
-input[type="number"],
-select {
-    width: 100%;
+td {
+    padding-bottom: 15px;
+    vertical-align: top;
+}
+
+input[type="text"] {
     padding: 8px;
-    border: 1.5px solid #007BFF;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    transition: border-color 0.3s;
+    font-size: 14px;
 }
 
-.radio-grupo {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-bottom: 10px;
+input[type="text"]:focus {
+    border-color: #4a90e2;
+    outline: none;
 }
 
-.botones {
+/* Contenedor de los botones como columna */
+.menu-opciones {
     display: flex;
-    flex-direction: column; /* Cambiado a columna para apilar los botones */
-    gap: 15px; /* Espacio entre los botones apilados */
+    flex-direction: column; /* Apila los elementos (formularios) verticalmente */
+    gap: 15px;             /* Espacio entre los formularios */
+    align-items: center;   /* Centra los formularios horizontalmente dentro de este contenedor */
     margin-top: 20px;
-    align-items: center; /* Centra los botones en el contenedor .botones */
 }
 
-.botones button {
-    width: 100%; /* Los botones ocuparán el 100% del ancho de .botones */
-    max-width: 250px; /* Puedes ajustar este valor para controlar el ancho máximo */
-    padding: 12px; /* Ajusta el padding para un tamaño adecuado */
-    background-color: #007BFF;
-    border: none;
-    border-radius: 5px;
+/* Estilo para los formularios dentro de .menu-opciones (opcional, pero puede ser útil) */
+.menu-opciones form {
+    width: 100%; /* Hacemos que el formulario ocupe el ancho disponible que le da el flex item */
+    max-width: 280px; /* Un poco más que el botón para asegurar que el botón se centre bien */
+                      /* o igual al max-width del botón si quieres que el form se ajuste al botón */
+}
+
+/* Estilo unificado para todos los botones */
+/* Puedes mantener tu estilo general de botón, o ser más específico como abajo */
+
+/* Estilo para los botones DENTRO de .menu-opciones */
+.menu-opciones button {
+    width: 100%; /* El botón ocupará el 100% del ancho de su <form> padre */
+    max-width: 250px; /* Ancho máximo para los botones del menú */
+    padding: 12px;
+    background-color: #4a90e2;
     color: white;
-    font-weight: bold;
+    border: none;
+    border-radius: 8px;
     cursor: pointer;
-    font-size: 16px; /* Asegura un tamaño de fuente legible */
-    margin-bottom: 0; /* Elimina el margin-bottom duplicado */
-    display: flex; /* Asegura que el contenido del botón (texto/icono) se centre */
-    justify-content: center; /* Centra el contenido horizontalmente */
-    align-items: center; /* Centra el contenido verticalmente */
-    gap: 10px; /* Espacio entre texto e icono si lo hay */
-}
-
-.botones button:hover {
-    background-color: #0056b3;
-}
-
-.fila-doble {
+    font-size: 15px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background-color 0.3s;
+    /* Eliminamos margin: 8px 0; porque gap en .menu-opciones ya maneja el espaciado vertical */
 }
 
-.columna {
-    flex: 1;
-    min-width: 250px;
+.menu-opciones button:hover {
+    background-color: #357ab8;
 }
 
-textarea {
-    resize: vertical;
+.menu-opciones button svg {
+    width: 20px; /* Ajustado para mejor proporción con el texto */
+    height: 20px;
+    fill: white;
+}
+
+/* Responsive: en pantallas pequeñas que el input sea más ancho */
+@media (max-width: 480px) {
+    .contenedor {
+        padding: 20px;
+    }
+
+    /* Los botones en .menu-opciones ya se comportan bien por el width: 100% y max-width */
+    /* .menu-opciones button {
+        width: 100%;
+    } */
 }

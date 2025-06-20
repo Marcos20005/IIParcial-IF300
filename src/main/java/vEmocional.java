@@ -8,11 +8,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+// Declaración de servlet para manejar la información adicional del caso de violencia emocional.
 @WebServlet("/vEmocional")
 public class vEmocional extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+
+    // Uso del método doPost para manejar la solicitud de información adicional del caso de violencia emocional.
     @Override
     protected void doPost(HttpServletRequest request,
                           HttpServletResponse response)
@@ -24,6 +27,8 @@ public class vEmocional extends HttpServlet {
         String tipoViolencia = (session != null) ? (String) session.getAttribute("tipoViolencia") : "";
 
         response.setContentType("text/html;charset=UTF-8");
+
+        // Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html lang=\"es\"><head>");

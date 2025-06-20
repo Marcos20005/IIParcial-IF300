@@ -18,8 +18,11 @@ public class ConsultarOficinas extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+
+
+    // Método doPost para manejar la solicitud de consulta de oficinas con respuestas registradas.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,11 +41,11 @@ public class ConsultarOficinas extends HttpServlet {
             out.println("<body>");
             out.println("<div class='ventana'>");
             out.println("<h2>Oficinas con respuestas registradas</h2>");
-
-            // FUNCIONARIOS REGISTRADOS
             out.println("<label for='areaOficinas'>Funcionarios registrados</label>");
             out.println("<textarea id='areaOficinas' rows='5' readonly>");
 
+
+            // Consultar base de datos para obtener las oficinas regionales
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 String sql = "SELECT IDempleado, Nombre, Lugar FROM oficinaregional";
@@ -57,13 +60,14 @@ public class ConsultarOficinas extends HttpServlet {
 
                 out.println("</textarea><br><br>");
 
-                // CÉDULAS DE CASOS REGISTRADOS (de tabla caso)
+                
                 out.println("<label for='areaCasos'>Cédulas de casos registrados</label>");
                 out.println("<textarea id='areaCasos' rows='5' readonly>");
 
                 String sqlCasos = "SELECT Cedula FROM caso";
                 try (PreparedStatement stmt2 = conn.prepareStatement(sqlCasos);
                      ResultSet rs2 = stmt2.executeQuery()) {
+                     // Consultar base de datos para obtener las cédulas de casos registrados   
                     while (rs2.next()) {
                         out.println(rs2.getString("Cedula"));
                     }
@@ -76,7 +80,7 @@ public class ConsultarOficinas extends HttpServlet {
             out.println("</textarea><br><br>");
 
             // CAMPO PARA CÉDULA DE CASO A RESPONDER
-            out.println("<label for='cedulaCaso'>Ingrese la cédula del caso para responder</label>");
+            out.println("<label for='cedulaCaso'>Ingrese la cédula del caso y seleccione funcion</label>");
             out.println("<input type='text' id='cedulaCaso' name='cedulaCaso'><br><br>");
 
             // BOTONES

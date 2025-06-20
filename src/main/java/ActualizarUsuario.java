@@ -11,15 +11,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+// Declaración de servlet para actualizar la información de un usuario en la base de datos.
 @WebServlet("/ActualizarUsuario")
 public class ActualizarUsuario extends HttpServlet {
 
+
+
     private static final long serialVersionUID = 1L;
 
+    // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+
+    // Uso del método doPost para manejar la solicitud de actualización del usuario.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,7 +33,9 @@ public class ActualizarUsuario extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
-        String login = request.getParameter("login"); // ID para buscar
+
+        // Declaración de los parámetros recibidos desde el formulario de editar.
+        String login = request.getParameter("login"); 
         String cedula = request.getParameter("cedula");
         String nombre1 = request.getParameter("nombre1");
         String nombre2 = request.getParameter("nombre2");
@@ -35,6 +43,8 @@ public class ActualizarUsuario extends HttpServlet {
         String apellido2 = request.getParameter("apellido2");
         String clave = request.getParameter("clave");
 
+
+        //Se empieza la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html lang='es'>");
@@ -50,6 +60,7 @@ public class ActualizarUsuario extends HttpServlet {
             if (login == null || login.isEmpty()) {
                 out.println("<p>Error: El login es obligatorio para actualizar el usuario.</p>");
             } else {
+                // Declaración de lo necesario para la conexión a la base de datos y actualización del usuario.
                 try {
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {

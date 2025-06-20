@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -7,8 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+//Declaración de servlet para mostrar el formulario de registro de un funcionario asociado a un caso específico.
 @WebServlet("/vFuncionario")
 public class vFuncionario extends HttpServlet {
+
     private static final long serialVersionUID = 1L;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -17,6 +21,8 @@ public class vFuncionario extends HttpServlet {
         String cedulaCaso = request.getParameter("cedulaCaso");
 
         response.setContentType("text/html;charset=UTF-8");
+
+        // Se inicia la respuesta al usuario.
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html lang=\"es\"><head>");
@@ -49,7 +55,9 @@ public class vFuncionario extends HttpServlet {
             // Cédula del caso oculta
             out.printf("<input type=\"hidden\" name=\"cedulaCaso\" value=\"%s\">", cedulaCaso);
 
+            out.println("<div class=\"botones\">");
             out.println("<button type=\"submit\">💾 Guardar</button>");
+            out.println("</div>");
             out.println("</form></div></body></html>");
         }
     }

@@ -10,20 +10,23 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+//Declaracion de servlet para guardar la informacion actualizada.
 @WebServlet("/ActualizarCaso")
 public class ActualizarCaso extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
+    // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+//Uso del método doPost para manejar la solicitud de actualización del caso.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        // Configuración de la codificación y tipo de contenido
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 
@@ -31,6 +34,7 @@ public class ActualizarCaso extends HttpServlet {
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
 
+        //Declaracion y respuesta de la ventana de actualización del caso.
         try (PrintWriter out = response.getWriter()) {
             out.println("<!DOCTYPE html>");
             out.println("<html lang='es'>");
@@ -47,6 +51,7 @@ public class ActualizarCaso extends HttpServlet {
                 out.println("<p>Error: La cédula es obligatoria para actualizar el caso.</p>");
             } else {
                 try {
+                    //Declaracion de lo necesario para la conexión a la base de datos y actualización del caso.
                     Class.forName("com.mysql.cj.jdbc.Driver");
                     try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                         String sql = "UPDATE caso SET Nombre = ?, Descripcion = ? WHERE Cedula = ?";
