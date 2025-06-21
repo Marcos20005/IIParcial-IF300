@@ -36,9 +36,9 @@ public class capturarDatos extends HttpServlet {
             clave = req.getParameter("Clave");
 
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "erpalacios");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "cRojas34");
             con.setAutoCommit(true);
-            
+
             stmt = con.createStatement();
             query = "SELECT * FROM usuario WHERE login='" + usuario + "' AND clave='" + clave + "'";
             rs = stmt.executeQuery(query);

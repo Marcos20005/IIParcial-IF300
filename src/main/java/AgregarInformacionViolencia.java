@@ -23,7 +23,7 @@ public class AgregarInformacionViolencia extends HttpServlet {
     // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
 
     // Uso del método doPost para manejar la solicitud de agregar información de violencia.

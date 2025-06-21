@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 //Declaración de servlet para mostrar el formulario de registro de un funcionario asociado a un caso específico.
 @WebServlet("/vFuncionario")
 public class vFuncionario extends HttpServlet {

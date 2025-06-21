@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -18,11 +19,15 @@ public class ConsultarOficinas extends HttpServlet {
     private static final long serialVersionUID = 1L;
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
+    // Agregamos doGet para aceptar redirecciones GET
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        doPost(request, response);
+    }
 
-
-    // Método doPost para manejar la solicitud de consulta de oficinas con respuestas registradas.
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -44,30 +49,24 @@ public class ConsultarOficinas extends HttpServlet {
             out.println("<label for='areaOficinas'>Funcionarios registrados</label>");
             out.println("<textarea id='areaOficinas' rows='5' readonly>");
 
-
-            // Consultar base de datos para obtener las oficinas regionales
             Class.forName("com.mysql.cj.jdbc.Driver");
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 String sql = "SELECT IDempleado, Nombre, Lugar FROM oficinaregional";
-                try (PreparedStatement stmt = conn.prepareStatement(sql);
-                     ResultSet rs = stmt.executeQuery()) {
+                try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
                     while (rs.next()) {
-                        out.println("ID Empleado: " + rs.getString("IDempleado") +
-                                ", Nombre: " + rs.getString("Nombre") +
-                                ", Lugar: " + rs.getString("Lugar"));
+                        out.println("ID Empleado: " + rs.getString("IDempleado")
+                                + ", Nombre: " + rs.getString("Nombre")
+                                + ", Lugar: " + rs.getString("Lugar"));
                     }
                 }
 
                 out.println("</textarea><br><br>");
 
-                
                 out.println("<label for='areaCasos'>Cédulas de casos registrados</label>");
                 out.println("<textarea id='areaCasos' rows='5' readonly>");
 
                 String sqlCasos = "SELECT Cedula FROM caso";
-                try (PreparedStatement stmt2 = conn.prepareStatement(sqlCasos);
-                     ResultSet rs2 = stmt2.executeQuery()) {
-                     // Consultar base de datos para obtener las cédulas de casos registrados   
+                try (PreparedStatement stmt2 = conn.prepareStatement(sqlCasos); ResultSet rs2 = stmt2.executeQuery()) {
                     while (rs2.next()) {
                         out.println(rs2.getString("Cedula"));
                     }
@@ -79,32 +78,30 @@ public class ConsultarOficinas extends HttpServlet {
 
             out.println("</textarea><br><br>");
 
-            // CAMPO PARA CÉDULA DE CASO A RESPONDER
-            out.println("<label for='cedulaCaso'>Ingrese la cédula del caso y seleccione funcion</label>");
+            out.println("<label for='cedulaCaso'>Ingrese cédula del caso para asignar funcionario o ID y seleccione función</label>");
             out.println("<input type='text' id='cedulaCaso' name='cedulaCaso'><br><br>");
 
-            // BOTONES
             out.println("<div class='botones'>");
 
-            // BOTÓN: INGRESAR RESPUESTA DE FUNCIONARIO
+            // Botón: Ingresar respuesta de funcionario
             out.println("<form action='vFuncionario' method='post' style='display:inline; margin-left:10px;'>");
             out.println("<input type='hidden' name='cedulaCaso' id='cedulaCasoOculta'>");
             out.println("<button type='submit' onclick=\"document.getElementById('cedulaCasoOculta').value = document.getElementById('cedulaCaso').value;\">Ingresar respuesta de funcionario</button>");
             out.println("</form>");
 
-            // BUSCAR FUNCIONARIO
+            // Botón: Buscar funcionario
             out.println("<form action='BuscarOficina' method='post' style='display:inline; margin-left:10px;'>");
             out.println("<input type='hidden' name='cedula' id='cedulaOficinaBuscar'>");
             out.println("<button type='submit' onclick=\"document.getElementById('cedulaOficinaBuscar').value = document.getElementById('cedulaCaso').value;\">Buscar</button>");
             out.println("</form>");
 
-            // EDITAR FUNCIONARIO
+            // Botón: Editar funcionario
             out.println("<form action='EditarFuncionario' method='post' style='display:inline; margin-left:10px;'>");
             out.println("<input type='hidden' name='cedula' id='cedulaOficinaEditar'>");
             out.println("<button type='submit' onclick=\"document.getElementById('cedulaOficinaEditar').value = document.getElementById('cedulaCaso').value;\">Editar</button>");
             out.println("</form>");
 
-            // ELIMINAR FUNCIONARIO
+            // Botón: Eliminar funcionario
             out.println("<form action='EliminarFuncionario' method='post' style='display:inline; margin-left:10px;'>");
             out.println("<input type='hidden' name='cedula' id='cedulaOficinaEliminar'>");
             out.println("<button type='submit' onclick=\"document.getElementById('cedulaOficinaEliminar').value = document.getElementById('cedulaCaso').value; return confirmarEliminacion();\">Eliminar</button>");
