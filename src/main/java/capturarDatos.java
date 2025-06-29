@@ -1,4 +1,3 @@
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -36,7 +35,7 @@ public class capturarDatos extends HttpServlet {
             clave = req.getParameter("Clave");
 
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "cRojas34");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "erpalacios");
             con.setAutoCommit(true);
 
             stmt = con.createStatement();
@@ -44,32 +43,18 @@ public class capturarDatos extends HttpServlet {
             rs = stmt.executeQuery(query);
 
             if (rs.next()) {
-                // Usuario y clave correctos
-                res.sendRedirect("Menu.html");
-                System.out.println("Usuario y clave correctos, redirigiendo a Menu.html");
+                // Usuario y clave correctos, redirigir a Menu.jsp
+                req.getSession().setAttribute("usuario", usuario);
+                res.sendRedirect("Menu.jsp");
+                System.out.println("Usuario y clave correctos, redirigiendo a Menu.jsp");
             } else {
-                // Usuario o clave incorrectos: mensaje bonito con botón
-                pw.println("<!DOCTYPE html>");
-                pw.println("<html lang='es'>");
-                pw.println("<head>");
-                pw.println("<meta charset='UTF-8'>");
-                pw.println("<title>Error de autenticación</title>");
-                pw.println("<link rel='stylesheet' href='styles.css'>");
-                pw.println("</head>");
-                pw.println("<body>");
-                pw.println("<div class='contenedor' style='text-align: center;'>");
-                pw.println("<h2>Usuario o contraseña incorrectos</h2>");
-                pw.println("<form action='Index.html' method='get'>");
-                pw.println("<button type='submit'>Volver a intentar</button>");
-                pw.println("</form>");
-                pw.println("</div>");
-                pw.println("</body>");
-                pw.println("</html>");
+                req.setAttribute("errorLogin", "Usuario o clave incorrectos");
+                req.getRequestDispatcher("Index.jsp").forward(req, res);
             }
-
-            pw.close();
+            
         } catch (java.sql.SQLException | ClassNotFoundException e) {
-            pw.println("Ocurrió un error: " + e.getMessage());
+            req.setAttribute("errorLogin", "Ocurrió un error: " + e.getMessage());
+            req.getRequestDispatcher("index.jsp").forward(req, res);
         }
     }
 }

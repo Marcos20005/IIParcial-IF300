@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -17,7 +18,7 @@
             </div>
         </div>
 
-        <form action="http://localhost:8080/miproyectoexamen/GuardarCaso" method="post">
+        <form action="GuardarCaso" method="post">
             <div class="fila-doble">
                 <div class="columna">
                     <label>Descripción de la denuncia *</label>
@@ -80,7 +81,13 @@
                 <button type="submit">Ingresar</button> 
             </div>
         </form>
-        </div>
+    </div>
+
+    <script>
+        // se encarga de mostrar la fecha
+        const ahora = new Date();
+        document.getElementById("fechaDenuncia").textContent = ahora.toLocaleDateString();
+        document.getElementById("horaDenuncia").textContent = ahora.toLocaleTimeString();
+    </script>
 </body>
 </html>
-

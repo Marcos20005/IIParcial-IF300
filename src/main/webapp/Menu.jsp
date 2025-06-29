@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -8,6 +9,18 @@
 <body>
     <div class="contenedor">
         <h1>Menú Principal</h1>
+
+        <%--Muestra el nombre del usuario autenticado--%>
+        <%
+           String usuario = (String) session.getAttribute("usuario");
+           if (usuario != null) {
+            %>
+            <h3>Bienvenido, <%= usuario %></h3>
+            <%
+           } else {
+            response.sendRedirect("Index.jsp");
+           }
+        %>
 
         <!-- Contenedor para los botones del menú -->
         <div class="menu-opciones">
@@ -38,7 +51,7 @@
                 </button>
             </form>
 
-            <form action="/miproyectoexamen/Index.html" method="post">
+            <form action="/miproyectoexamen/Index.jsp" method="post">
                 <button type="submit" id="salir">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M16 13v-2H7V8l-5 4 5 4v-3zM20 3H4c-1.1 0-2 .9-2 2v4h2V5h16v14H4v-4H2v4c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/>
@@ -46,7 +59,7 @@
                     Salir
                 </button>
             </form>
-        </div> <!-- Fin de .menu-opciones -->
+        </div> 
 
     </div>
 </body>

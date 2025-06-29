@@ -21,7 +21,7 @@ public class BuscarUsuario extends HttpServlet {
 
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "cRojas34";
+    private static final String PASSWORD = "erpalacios";
 
     // Uso del método doPost para manejar la solicitud de búsqueda de un usuario por login.
     @Override
