@@ -1,6 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" lenguage="java" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lenguaje="es">
+<html lang="es">
     <head>
         <meta charset="UTF-8">
         <title>Resultado del registro</title>

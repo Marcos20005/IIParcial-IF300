@@ -7,19 +7,18 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Violencia Economica</title>
+    <title>Violencia Fisica</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <div class="Violencia-Economica ventana">
-        <h2>Información adicional del caso de Violencia Económica</h2>
+    <div class="Violencia-Fisica ventana">
+        <h2>Información adicional del caso de Violencia Fisica</h2>
         <form action="AgregarViolencia" method="post">
-            <label for="ingreso">Ingrese el tipo de ingreso afectado *</label>
-            <input type="text" id="ingreso" name="ingreso" required>
+            <label for="tipoLesion">Ingrese el tipo de lesion sufrida *</label>
+            <input type="text" id="tipoLesion" name="tipoLesion" required>
 
-            <label for="impacto">Ingrese el impacto económico que tuvo la persona *</label>
-            <input type="text" id="impacto" name="impacto" required>
-
+            <label for="atencionMedica">Ingrese la atencion medica recibida *</label>
+            <input type="text" id="atencionMedica" name="atencionMedica" required>
 
             <label for="agresorNombre">Nombre del agresor *</label>
             <input type="text" id="agresorNombre" name="agresorNombre" required>

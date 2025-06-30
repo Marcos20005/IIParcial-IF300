@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -72,16 +71,16 @@ public class GuardarCaso extends HttpServlet {
                             case "Violencia Digital":
                             request.getRequestDispatcher("/vDigital").forward(request, response);
                             return;
-                            case "Violecia Economica":
+                            case "Violencia Económica":
                              request.getRequestDispatcher("/vEconomica").forward(request, response);
                             return;
-                            case "Violecia Emocional":
+                            case "Violencia Emocional":
                             request.getRequestDispatcher("/vEmocional").forward(request, response);
                             return;
-                            case "Violecia Fisica":
+                            case "Violencia Física":
                             request.getRequestDispatcher("/vFisica").forward(request, response);
                             return;
-                            case "Violecia Sexual":
+                            case "Violencia Sexual":
                             request.getRequestDispatcher("/vSexual").forward(request, response);
                             return;
                         }

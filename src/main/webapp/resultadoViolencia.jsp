@@ -9,15 +9,22 @@
 <body>
     <div class="ventana">
         <h2>Resultado</h2>
+
         <%
             Boolean exito = (Boolean) request.getAttribute("exito");
             String mensaje = (String) request.getAttribute("mensaje");
-            String color = (exito != null && exito) ? "green" : "red";
+            String claseMensaje = (exito != null && exito) ? "mensaje-exito" : "mensaje-error";
         %>
-        <p 
-             <%= mensaje != null ? mensaje : "No se recibió mensaje del servidor." %>
+
+        <p class="<%= claseMensaje %>">
+            <%= (mensaje != null) ? mensaje : "No se recibió mensaje del servidor." %>
         </p>
-        <a href="Menu.jsp">Volver al menú</a>
+
+        <div class="botones">
+            <button onclick="history.back()">🔙 Volver a la pestaña anterior</button>
+            <a href="Menu.jsp"><button>🏠 Ir al menú</button></a>
+        </div>
     </div>
 </body>
 </html>
+

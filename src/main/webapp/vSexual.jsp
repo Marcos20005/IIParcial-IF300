@@ -7,19 +7,15 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Violencia Economica</title>
+    <title>Violencia Sexual</title>
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
-    <div class="Violencia-Economica ventana">
-        <h2>Información adicional del caso de Violencia Económica</h2>
+    <div class="Violencia-Sexual ventana">
+        <h2>Información adicional del caso de Violencia Sexual</h2>
         <form action="AgregarViolencia" method="post">
-            <label for="ingreso">Ingrese el tipo de ingreso afectado *</label>
-            <input type="text" id="ingreso" name="ingreso" required>
-
-            <label for="impacto">Ingrese el impacto económico que tuvo la persona *</label>
-            <input type="text" id="impacto" name="impacto" required>
-
+            <label for="abuso">Ingrese el tipo de abuso sexual recibido *</label>
+            <input type="text" id="abuso" name="abuso" required>
 
             <label for="agresorNombre">Nombre del agresor *</label>
             <input type="text" id="agresorNombre" name="agresorNombre" required>

@@ -8,8 +8,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-// Declaración de servlet para manejar la información adicional del caso de Violencia Digital.
-@WebServlet("/vEconomica")
+// Declaración de servlet para manejar la información adicional del caso de Violencia Emocional.
+@WebServlet("/vEmocional")
 public class vEmocional extends HttpServlet {
 
     private static final long serialVersionUID = 1L;

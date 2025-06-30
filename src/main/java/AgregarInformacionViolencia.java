@@ -1,6 +1,4 @@
-
     import java.io.IOException;
-    import java.io.PrintWriter;
     import java.sql.Connection;
     import java.sql.DriverManager;
     import java.sql.SQLException;
@@ -54,52 +52,52 @@
             } else if (tipoViolencia.equals("Violencia Económica")) {
                 String ingreso = request.getParameter("ingreso");
                 String impacto = request.getParameter("impacto");
-                String nombreAgresor = request.getParameter("nombre");
-                String relacionAgresor = request.getParameter("relacion");
-                String generoAgresor = request.getParameter("genero");
+                String agresorNombre = request.getParameter("agresorNombre");
+                String relacionAgresor = request.getParameter("relacionAgresor");
+                String generoAgresor = request.getParameter("agresorGenero");
                 // Si no es violencia digital, se actualizan los mismos campos pero sin la plataforma
                 sql = "UPDATE caso SET "
                         + "TipoIngreso = '" + ingreso + "', "
-                        + "Agresor = '" + nombreAgresor + "', "
+                        + "Agresor = '" + agresorNombre + "', "
                         + "RelacionAgresor    = '" + relacionAgresor + "', "
                         + "GeneroAgresor      = '" + generoAgresor + "',"
                         + "CantidadIngreso = '" + impacto + "' "
                         + "WHERE cedula = '" + acceso + "'";
             } else if (tipoViolencia.equals("Violencia Emocional")) {
                 String impacto = request.getParameter("impacto");
-                String nombreAgresor = request.getParameter("nombre");
-                String relacionAgresor = request.getParameter("relacion");
-                String generoAgresor = request.getParameter("genero");
+                String agresorNombre = request.getParameter("agresorNombre");
+                String relacionAgresor = request.getParameter("relacionAgresor");
+                String generoAgresor = request.getParameter("agresorGenero");
 
                 sql = "UPDATE caso SET "
                         + "ImpactoPsicologico = '" + impacto + "', "
-                        + "Agresor = '" + nombreAgresor + "', "
+                        + "Agresor = '" + agresorNombre + "', "
                         + "RelacionAgresor = '" + relacionAgresor + "', "
                         + "GeneroAgresor = '" + generoAgresor + "' "
                         + "WHERE cedula = '" + acceso + "'";
             } else if (tipoViolencia.equals("Violencia Física")) {
                 String tipoLesion = request.getParameter("tipoLesion");
                 String AtencionMedica = request.getParameter("atencionMedica");
-                String nombreAgresor = request.getParameter("nombre");
-                String relacionAgresor = request.getParameter("relacion");
-                String generoAgresor = request.getParameter("genero");
+                String agresorNombre = request.getParameter("agresorNombre");
+                String relacionAgresor = request.getParameter("relacionAgresor");
+                String generoAgresor = request.getParameter("agresorGenero");
 
                 sql = "UPDATE caso SET "
                         + "TipoLesion = '" + tipoLesion + "', "
                         + "AtencionMedica = '" + AtencionMedica + "', "
-                        + "Agresor = '" + nombreAgresor + "', "
+                        + "Agresor = '" + agresorNombre + "', "
                         + "RelacionAgresor = '" + relacionAgresor + "', "
                         + "GeneroAgresor = '" + generoAgresor + "' "
                         + "WHERE cedula = '" + acceso + "'";
             } else if (tipoViolencia.equals("Violencia Sexual")) {
                 String TipoAbusoSexual = request.getParameter("abuso");
-                String nombreAgresor = request.getParameter("nombre");
-                String relacionAgresor = request.getParameter("relacion");
-                String generoAgresor = request.getParameter("genero");
+                String agresorNombre = request.getParameter("agresorNombre");
+                String relacionAgresor = request.getParameter("relacionAgresor");
+                String generoAgresor = request.getParameter("agresorGenero");
 
                 sql = "UPDATE caso SET "
                         + "TipoAbusoSexual = '" + TipoAbusoSexual + "', "
-                        + "Agresor = '" + nombreAgresor + "', "
+                        + "Agresor = '" + agresorNombre + "', "
                         + "RelacionAgresor = '" + relacionAgresor + "', "
                         + "GeneroAgresor = '" + generoAgresor + "' "
                         + "WHERE cedula = '" + acceso + "'";

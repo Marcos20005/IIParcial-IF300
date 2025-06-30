@@ -10,7 +10,7 @@ import javax.servlet.http.HttpSession;
 
 // Declaración de servlet para manejar la información adicional del caso de Violencia Digital.
 @WebServlet("/vEconomica")
-public class VEconomicaServlet extends HttpServlet {
+public class vEconomicaServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 

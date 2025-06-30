@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -21,15 +20,12 @@ public class capturarDatos extends HttpServlet {
         String usuario;
         String clave;
         String query;
-        PrintWriter pw;
 
         Connection con;
         Statement stmt;
         ResultSet rs;
 
         res.setContentType("text/html");
-        pw = res.getWriter();
-
         try {
             usuario = req.getParameter("Usuario");
             clave = req.getParameter("Clave");
