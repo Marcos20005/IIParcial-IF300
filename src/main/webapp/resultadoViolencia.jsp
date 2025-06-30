@@ -21,7 +21,7 @@
         </p>
 
         <div class="botones">
-            <button onclick="history.back()">🔙 Volver a la pestaña anterior</button>
+            <a href="ConsultarCasos"><button>🔙 Volver a la pestaña anterior</button></a>
             <a href="Menu.jsp"><button>🏠 Ir al menú</button></a>
         </div>
     </div>
