@@ -31,6 +31,7 @@ public class vEmocional extends HttpServlet {
         // Por si acaso, pasa los valores también como atributos
         request.setAttribute("cedula", cedula);
         request.setAttribute("tipoViolencia", tipoViolencia);
+        System.out.println("Cedula: " + cedula);
 
         // Redirige al JSP en lugar de imprimir HTML
         request.getRequestDispatcher("vEmocional.jsp").forward(request, response);
