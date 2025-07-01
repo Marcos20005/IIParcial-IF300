@@ -24,7 +24,7 @@
 
         <!-- Contenedor para los botones del menú -->
         <div class="menu-opciones">
-            <form action="/miproyectoexamen/ConsultarCasos" method="post">
+            <form action="/miproyectoexamen/ConsultarCasos.jsp" method="post">
                 <button type="submit" id="caso" class="">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M3 6h18v2H3V6zm2 4h14v2H5v-2zm-2 4h18v2H3v-2z"/>
@@ -33,7 +33,7 @@
                 </button>
             </form>
 
-            <form action="/miproyectoexamen/ConsultarOficinas" method="post">
+            <form action="/miproyectoexamen/ConsultarOficina.jsp" method="post">
                 <button type="submit" id="oficina">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M4 22h16v-2H4v2zm14-6h-4v-4h-4v4H6v-6h12v6z"/>

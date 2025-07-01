@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -7,16 +8,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 // Declaración de servlet para manejar la información adicional del caso de Violencia Digital.
 @WebServlet("/vEconomica")
-public class vEconomicaServlet extends HttpServlet {
+public class VEconomicaServlet extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
     @Override
     protected void doPost(HttpServletRequest request,
-            HttpServletResponse response)       
+            HttpServletResponse response)
             throws ServletException, IOException {
 
         // Recupera la cédula desde la sesión
@@ -36,4 +36,3 @@ public class vEconomicaServlet extends HttpServlet {
         request.getRequestDispatcher("vEconomica.jsp").forward(request, response);
     }
 }
-

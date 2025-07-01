@@ -9,7 +9,7 @@
 <body>
     <div class="contenedor">
         <h1>Autenticación de Usuario</h1>
-        <form action="http://localhost:8080/miproyectoexamen/capturarDatos" method="post">
+        <form action="http://localhost:8080/miproyectoexamen/capturarDatos.jsp" method="post">
             <table>
                 <tr>
                     <td><label for="nombre">Nombre de usuario:</label></td>

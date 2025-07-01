@@ -18,7 +18,7 @@
             </div>
         </div>
 
-        <form action="GuardarCaso" method="post">
+        <form action="GuardarCaso.jsp" method="post">
             <div class="fila-doble">
                 <div class="columna">
                     <label>Descripción de la denuncia *</label>

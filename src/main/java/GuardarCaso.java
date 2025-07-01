@@ -23,7 +23,7 @@ public class GuardarCaso extends HttpServlet {
     // Datos de conexión a la base de datos
     private static final String URL = "jdbc:mysql://localhost:3306/proyecto1";
     private static final String USER = "root";
-    private static final String PASSWORD = "erpalacios";
+    private static final String PASSWORD = "cRojas34";
 
 
     // Uso del método doPost para manejar la solicitud de guardar un caso.
@@ -69,19 +69,19 @@ public class GuardarCaso extends HttpServlet {
                        
                         switch (tipoViolencia) {
                             case "Violencia Digital":
-                            request.getRequestDispatcher("/vDigital").forward(request, response);
+                            request.getRequestDispatcher("/vDigital.jsp").forward(request, response);
                             return;
                             case "Violencia Económica":
-                             request.getRequestDispatcher("/vEconomica").forward(request, response);
+                             request.getRequestDispatcher("/vEconomica.jsp").forward(request, response);
                             return;
                             case "Violencia Emocional":
-                            request.getRequestDispatcher("/vEmocional").forward(request, response);
+                            request.getRequestDispatcher("/vEmocional.jsp").forward(request, response);
                             return;
                             case "Violencia Física":
-                            request.getRequestDispatcher("/vFisica").forward(request, response);
+                            request.getRequestDispatcher("/vFisica.jsp").forward(request, response);
                             return;
                             case "Violencia Sexual":
-                            request.getRequestDispatcher("/vSexual").forward(request, response);
+                            request.getRequestDispatcher("/vSexual.jsp").forward(request, response);
                             return;
                         }
                         //Si el caso coincide
