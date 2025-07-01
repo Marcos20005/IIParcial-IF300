@@ -95,7 +95,7 @@
     %>
 
     <div class="botones">
-        <form action="ConsultarCasos" method="post">
+        <form action="ConsultarCasos.jsp" method="post">
             <button type="submit">📄 Lista de casos</button>
         </form>
         <form action="Menu.jsp" method="get">

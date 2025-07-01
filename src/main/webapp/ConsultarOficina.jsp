@@ -3,7 +3,7 @@
 <%
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "cRojas34";
+    String PASSWORD = "erpalacios";
 
     Connection conn = null;
     PreparedStatement stmt1 = null, stmt2 = null;
@@ -27,14 +27,13 @@
                          .append("\n");
         }
 
-        String sqlCasos = "SELECT Cedula FROM caso";
-        stmt2 = conn.prepareStatement(sqlCasos);
-        rs2 = stmt2.executeQuery();
+      String sqlCasos = "SELECT c.Cedula FROM caso c LEFT JOIN oficinaregional o ON c.Cedula = o.CedulaCaso WHERE o.CedulaCaso IS NULL";
+stmt2 = conn.prepareStatement(sqlCasos);
+rs2 = stmt2.executeQuery();
 
-        while (rs2.next()) {
-            textoCasos.append(rs2.getString("Cedula")).append("\n");
-        }
-
+while (rs2.next()) {
+    textoCasos.append(rs2.getString("Cedula")).append("\n");
+}
     } catch (Exception e) {
         textoOficinas.append("Error al consultar: ").append(e.getMessage());
     } finally {
@@ -76,21 +75,21 @@
             </button>
         </form>
 
-        <form action="BuscarOficina" method="post" style="display:inline; margin-left:10px;">
+        <form action="BuscarOficina.jsp" method="post" style="display:inline; margin-left:10px;">
             <input type="hidden" name="cedula" id="cedulaOficinaBuscar">
             <button type="submit" onclick="document.getElementById('cedulaOficinaBuscar').value = document.getElementById('cedulaCaso').value;">
                 Buscar
             </button>
         </form>
 
-        <form action="EditarFuncionario" method="post" style="display:inline; margin-left:10px;">
+        <form action="EditarFuncionario.jsp" method="post" style="display:inline; margin-left:10px;">
             <input type="hidden" name="cedula" id="cedulaOficinaEditar">
             <button type="submit" onclick="document.getElementById('cedulaOficinaEditar').value = document.getElementById('cedulaCaso').value;">
                 Editar
             </button>
         </form>
 
-        <form action="EliminarFuncionario" method="post" style="display:inline; margin-left:10px;">
+        <form action="EliminarFuncionario.jsp" method="post" style="display:inline; margin-left:10px;">
             <input type="hidden" name="cedula" id="cedulaOficinaEliminar">
             <button type="submit" onclick="document.getElementById('cedulaOficinaEliminar').value = document.getElementById('cedulaCaso').value; return confirmarEliminacion();">
                 Eliminar

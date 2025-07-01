@@ -3,7 +3,7 @@
 <%
     String url = "jdbc:mysql://localhost:3306/proyecto1";
     String user = "root";
-    String password = "cRojas34";
+    String password = "erpalacios";
 
     Connection conn = null;
     PreparedStatement stmt = null;
@@ -56,17 +56,17 @@
                 <button type="submit">Ingresar nuevo caso</button>
             </form>
 
-            <form action="BuscarCaso" method="post">
+            <form action="BuscarCaso.jsp" method="post">
                 <input type="hidden" name="cedula" id="cedulaBuscar">
                 <button type="submit" onclick="document.getElementById('cedulaBuscar').value = document.getElementById('cedula').value;">Buscar</button>
             </form>
 
-            <form action="EditarCaso" method="post">
+            <form action="EditarCaso.jsp" method="post">
                 <input type="hidden" name="cedula" id="cedulaEditar">
                 <button type="submit" onclick="document.getElementById('cedulaEditar').value = document.getElementById('cedula').value;">Editar</button>
             </form>
 
-            <form action="EliminarCaso" method="post">
+            <form action="EliminarCaso.jsp" method="post">
                 <input type="hidden" name="cedula" id="cedulaEliminar">
                 <button type="submit" onclick="document.getElementById('cedulaEliminar').value = document.getElementById('cedula').value; return confirmarEliminacion();">Eliminar</button>
             </form>
