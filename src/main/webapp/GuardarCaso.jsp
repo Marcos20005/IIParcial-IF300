@@ -21,7 +21,7 @@
 
     String url = "jdbc:mysql://localhost:3306/proyecto1";
     String user = "root";
-    String password = "erpalacios";
+    String password = "cRojas34";
 
     boolean exito = false;
     String mensaje = "";

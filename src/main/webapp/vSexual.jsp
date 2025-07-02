@@ -13,7 +13,7 @@
 <body>
     <div class="Violencia-Sexual ventana">
         <h2>Información adicional del caso de Violencia Sexual</h2>
-        <form action="AgregarViolencia" method="post">
+        <form action="AgregarInformacionViolecia.jsp" method="post">
             <label for="abuso">Ingrese el tipo de abuso sexual recibido *</label>
             <input type="text" id="abuso" name="abuso" required>
 

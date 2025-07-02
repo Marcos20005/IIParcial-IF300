@@ -13,7 +13,7 @@
 <body>
     <div class="Violencia-Economica ventana">
         <h2>Información adicional del caso de Violencia Económica</h2>
-        <form action="AgregarViolencia" method="post">
+        <form action="AgregarInformacionViolecia.jsp" method="post">
             <label for="ingreso">Ingrese el tipo de ingreso afectado *</label>
             <input type="text" id="ingreso" name="ingreso" required>
 

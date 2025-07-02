@@ -13,7 +13,7 @@
 <body>
     <div class="Violencia-Digital ventana">
         <h2>Información adicional del caso de Violencia Digital</h2>
-        <form action="AgregarViolencia" method="post">
+        <form action="AgregarInformacionViolecia.jsp" method="post">
             <label for="impacto">Impacto emocional *</label>
             <input type="text" id="impacto" name="impacto" required>
 

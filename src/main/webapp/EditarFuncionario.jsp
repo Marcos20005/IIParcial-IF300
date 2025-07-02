@@ -6,7 +6,7 @@
 
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "erpalacios";
+    String PASSWORD = "cRojas34";
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -55,7 +55,7 @@
             <button type="submit">Guardar cambios</button>
     </form>
 
-    <form action="ConsultarOficinas.jsp" method="post">
+    <form action="ConsultarOficina.jsp" method="post">
         <button type="submit">Volver</button>
     </form>
 </div>

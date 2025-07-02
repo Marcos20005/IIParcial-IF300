@@ -3,7 +3,7 @@
 <%
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "erpalacios";
+    String PASSWORD = "cRojas34";
 
     Connection conn = null;
     PreparedStatement stmt1 = null, stmt2 = null;
@@ -28,12 +28,12 @@
         }
 
       String sqlCasos = "SELECT c.Cedula FROM caso c LEFT JOIN oficinaregional o ON c.Cedula = o.CedulaCaso WHERE o.CedulaCaso IS NULL";
-stmt2 = conn.prepareStatement(sqlCasos);
-rs2 = stmt2.executeQuery();
+      stmt2 = conn.prepareStatement(sqlCasos);
+      rs2 = stmt2.executeQuery();
 
-while (rs2.next()) {
-    textoCasos.append(rs2.getString("Cedula")).append("\n");
-}
+      while (rs2.next()) {
+          textoCasos.append(rs2.getString("Cedula")).append("\n");
+      }
     } catch (Exception e) {
         textoOficinas.append("Error al consultar: ").append(e.getMessage());
     } finally {
@@ -95,6 +95,12 @@ while (rs2.next()) {
                 Eliminar
             </button>
         </form>
+
+        <%-- BOTÓN "Volver a Menu" AHORA DENTRO DEL DIV "botones" --%>
+        <form action="Menu.jsp" method="post" style="display:inline; margin-left:10px;">
+            <button type="submit">Volver a Menu</button>
+        </form>
+        
     </div>
 
     <script>

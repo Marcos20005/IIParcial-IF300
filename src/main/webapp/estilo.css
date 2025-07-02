@@ -13,7 +13,7 @@ body {
     border-radius: 10px;
     padding: 20px 30px;
     width: 90%;
-    max-width: 600px;
+    max-width: 750px;
     box-sizing: border-box;
     margin-bottom: 20px;
 }
@@ -32,19 +32,6 @@ label {
     font-weight: bold;
 }
 
-textarea,
-input[type="text"],
-input[type="number"],
-
-select {
-    width: 100%;
-    padding: 8px;
-    border: 1.5px solid #007BFF;
-    border-radius: 5px;
-    margin-bottom: 10px;
-    box-sizing: border-box;
-}
-
 .radio-grupo {
     display: flex;
     gap: 15px;
@@ -52,15 +39,31 @@ select {
 }
 
 .botones {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
+    display: flex; /* Habilitar Flexbox */
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: flex-start; /* Alinea los elementos al inicio del eje transversal (arriba) */
+    /* IMPORTANTE: Remueve flex-wrap: wrap; si quieres que siempre estén en una línea */
+    /* Si el espacio es muy limitado y los botones se superponen, considera flex-wrap: nowrap; */
+    flex-wrap: nowrap; /* Asegura que no salten de línea */
     margin-top: 20px;
+    /* Añade un poco de margen derecho a .botones para compensar el left-margin de los forms */
+    margin-right: -10px; /* Compensa el margin-left de los forms */
+    overflow-x: auto; /* Agrega scroll horizontal si los botones son demasiados para el espacio */
+    padding-bottom: 5px; /* Pequeño padding si hay scroll para que no corte el contenido */
+}
+
+.botones form {
+    /* Ya no necesitamos display: flex ni flex: 1 en el form, ya que queremos que el botón defina su tamaño */
+    display: inline-block; /* Vuelve a un comportamiento más parecido a inline-block */
+    /* Mantenemos el margin-left del JSP para el espaciado entre ellos */
+    margin-left: 10px;
+    /* Ajusta el min-width si quieres que el formulario ocupe un mínimo de espacio */
+    /* Si un botón tiene mucho texto y se comprime, aquí podrías dar un min-width al form */
+    /* Por ejemplo: min-width: content; o min-width: 120px; */
 }
 
 .botones button {
-    flex: 1;
+    /* Aquí es donde el botón debe tener sus propiedades de tamaño y estilo */
     padding: 10px;
     background-color: #007BFF;
     border: none;
@@ -68,14 +71,15 @@ select {
     color: white;
     font-weight: bold;
     cursor: pointer;
+    /* Elimina flex-grow: 1; del botón si lo tenías, queremos su tamaño natural */
+    white-space: nowrap; /* Evita que el texto del botón se rompa en varias líneas */
 }
-
-
 
 .botones button:hover {
     background-color: #0056b3;
 }
 
+/* El resto de tu CSS permanece igual */
 .fila-doble {
     display: flex;
     flex-wrap: wrap;
@@ -88,11 +92,23 @@ select {
     min-width: 250px;
 }
 
+textarea,
+input[type="text"],
+input[type="number"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1.5px solid #007BFF;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
 textarea {
     resize: vertical;
 }
 
-/* Para que las etiquetas de radio no se desborden */
 .radio-grupo {
     display: flex;
     flex-direction: column;

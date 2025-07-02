@@ -13,7 +13,7 @@
 <body>
     <div class="Violencia-Fisica ventana">
         <h2>Información adicional del caso de Violencia Fisica</h2>
-        <form action="AgregarViolencia" method="post">
+        <form action="AgregarInformacionViolecia.jsp" method="post">
             <label for="tipoLesion">Ingrese el tipo de lesion sufrida *</label>
             <input type="text" id="tipoLesion" name="tipoLesion" required>
 
