@@ -3,8 +3,10 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
+    // Obtener la cédula enviada para buscar el caso a editar
     String cedulaBuscada = request.getParameter("cedula");
 
+    // Parametros de conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
@@ -30,15 +32,18 @@
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 String sql = "SELECT Nombre, Descripcion FROM caso WHERE Cedula = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    // Asignar la cédula buscada al parámetro de la consulta
                     stmt.setString(1, cedulaBuscada);
                     ResultSet rs = stmt.executeQuery();
 
+                    // Si existe el caso, obtener datos y mostrar formulario con valores
                     if (rs.next()) {
                         String nombre = rs.getString("Nombre");
                         String descripcion = rs.getString("Descripcion");
 %>
     <h2>Editar Información del Caso</h2>
     <form action="ActualizarCaso.jsp" method="post">
+         <!-- Campos ocultos para enviar la cedula, nombre y descripcion al actualizar -->
         <input type="hidden" name="cedula" value="<%= cedulaBuscada %>">
 
         <label for="nombre">Nombre:</label>
@@ -71,6 +76,7 @@
     }
 %>
 
+<!-- Botones para volver a la lista de casos o al menú principal -->
 <div class="botones">
     <form action="ConsultarCasos.jsp" method="post">
         <button type="submit"><i class="fi fi-rr-rectangle-list"></i>Volver a lista de casos</button>

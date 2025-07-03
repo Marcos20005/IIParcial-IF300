@@ -2,8 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.setCharacterEncoding("UTF-8");
+
+    // Obtener la cédula del funcionario a editar
     String idFuncionario = request.getParameter("cedula");
 
+    // Credenciales de la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
@@ -25,10 +28,13 @@
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             String sql = "SELECT * FROM oficinaregional WHERE IDempleado = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                // Asignar el ID del funcionario al parámetro de la consulta
                 stmt.setString(1, idFuncionario);
                 try (ResultSet rs = stmt.executeQuery()) {
+                    // Verificar si se encontró el funcionario
                     if (rs.next()) {
 %>
+<!-- Formulario para editar los datos del funcionario con los valores actuales precargados -->
     <form action="ActualizarFuncionario.jsp" method="post">
         <input type="hidden" name="idEmpleado" value="<%= rs.getString("IDempleado") %>">
 
@@ -74,8 +80,9 @@
     }
 %>
 <div class="botones">
-    <form action="ConsultarCasos.jsp" method="post">
-        <button type="submit"><i class="fi fi-rr-rectangle-list"></i>Volver a lista de casos</button>
+    <!-- Botones para volver a la lista de oficinas o al menú principal -->
+    <form action="ConsultarOficina.jsp" method="post">
+        <button type="submit"><i class="fi fi-rr-rectangle-list"></i>Volver a lista de oficinas</button>
     </form>
     <form action="Menu.jsp" method="get">
         <button type="submit"><i class="fi fi-rr-undo"></i>Volver al menú</button>

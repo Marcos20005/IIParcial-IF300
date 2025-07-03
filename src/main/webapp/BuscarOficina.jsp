@@ -2,6 +2,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.setCharacterEncoding("UTF-8");
+
+    // Recibe el ID del funcionario para buscar su información
     String idFuncionario = request.getParameter("cedula");
 
     String URL = "jdbc:mysql://localhost:3306/proyecto1";

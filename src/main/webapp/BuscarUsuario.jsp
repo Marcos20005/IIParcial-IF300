@@ -1,11 +1,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
 <%
+
+    // Obtener el parámetro "login" enviado desde el formulario
     String loginBuscado = request.getParameter("login");
+
+    // Datos para conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
-
+    
+    // Variables para almacenar datos del usuario y mensajes de error
     String mensaje = "";
     String cedula = "", nombre1 = "", nombre2 = "", apellido1 = "", apellido2 = "", login = "", clave = "";
 
@@ -17,6 +22,7 @@
                 stmt.setString(1, loginBuscado);
                 try (ResultSet rs = stmt.executeQuery()) {
                     if (rs.next()) {
+                        // Guardar los datos recuperados de la base de datos en variables
                         cedula = rs.getString("cedula");
                         nombre1 = rs.getString("nombre1");
                         nombre2 = rs.getString("nombre2");
@@ -51,7 +57,9 @@
 
     <% if (!mensaje.isEmpty()) { %>
         <p><%= mensaje %></p>
-    <% } else { %>
+    <% } else { 
+         // Mostrar los datos del usuario recuperados
+        %>
         <p><strong>Cédula:</strong> <%= cedula %></p>
         <p><strong>Nombre 1:</strong> <%= nombre1 %></p>
         <p><strong>Nombre 2:</strong> <%= nombre2 %></p>

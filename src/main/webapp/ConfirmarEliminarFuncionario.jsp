@@ -2,8 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.setCharacterEncoding("UTF-8");
+
+    // Obtener el parámetro 'cedula' enviado desde el formulario
     String cedula = request.getParameter("cedula");
 
+    // Parámetros de conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
@@ -19,6 +22,7 @@
 <body>
 <div class="ventana">
 <%
+    // Validar que se haya recibido una cédula válida para eliminar
     if (cedula == null || cedula.trim().isEmpty()) {
 %>
     <h3>Error: No se proporcionó una cédula válida.</h3>
@@ -29,7 +33,9 @@
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 String sql = "DELETE FROM oficinaregional WHERE IDempleado = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    // Asignar valor de cédula al parámetro SQL
                     stmt.setString(1, cedula);
+                    // Ejecuta la actualización y obtiene el número de filas afectadas
                     int filas = stmt.executeUpdate();
                     if (filas > 0) {
 %>

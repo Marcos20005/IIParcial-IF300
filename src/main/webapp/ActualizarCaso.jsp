@@ -4,10 +4,12 @@
 
     request.setCharacterEncoding("UTF-8");
 
+    // Parámetros del formulario
     String cedula = request.getParameter("cedula");
     String nombre = request.getParameter("nombre");
     String descripcion = request.getParameter("descripcion");
 
+    // Credenciales de la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
@@ -37,6 +39,7 @@
         }
 
         Class.forName("com.mysql.cj.jdbc.Driver");
+        // Establecer conexión a la base de datos
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             String sql = "UPDATE caso SET Nombre = ?, Descripcion = ? WHERE Cedula = ?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {

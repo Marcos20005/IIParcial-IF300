@@ -9,11 +9,14 @@
 </head>
 <body>
 
+    <!-- Contenedor principal para el formulario -->
 <div class="Nuevo-Usuario ventana" style="display: block;">
     <h2>Información para crear nuevo usuario</h2>
 
+     <!-- Formulario que envía los datos a GuardarUsuario.jsp -->
     <form action="/miproyectoexamen/GuardarUsuario.jsp" method="post">
 
+         <!-- Campos obligatorios y opcionales para el registro del usuario -->
         <label>Cédula *</label>
         <input type="text" name="cedula" required>
 

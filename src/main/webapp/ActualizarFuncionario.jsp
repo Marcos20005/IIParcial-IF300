@@ -3,7 +3,7 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
-   
+    // Parámetros recibidos del formulario
     String idEmpleado = request.getParameter("idEmpleado");
     String nombre = request.getParameter("nombre");
     String cedulaFuncionario = request.getParameter("cedulaFuncionario");
@@ -13,7 +13,7 @@
     String telefono = request.getParameter("telefono");
     String cedulaCaso = request.getParameter("cedulaCaso");
 
-    
+    // Credenciales de la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
@@ -22,6 +22,7 @@
     String error = null;
 
     try {
+        //Validaciones de los campos
         if (telefono == null || !telefono.matches("[0-9]+")) {
             throw new Exception("El campo 'Teléfono' solo debe contener números (ejemplo: 123456789)");
         }
@@ -33,6 +34,8 @@
       
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+
+            // Consulta SQL para actualizar información del funcionario
             String sql = "UPDATE oficinaregional SET Nombre=?, Cedula=?, Solucion=?, Lugar=?, Direccion=?, Telefono=? WHERE IDempleado=?";
             try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                 stmt.setString(1, nombre);
@@ -65,7 +68,7 @@
 <body>
 <div class="ventana">
 <%
-   
+   // Mostrar mensajes dependiendo del resultado de la actualización
     if (actualizado) {
 %>
     <h2><i class="fi fi-rr-check-circle"></i> Funcionario actualizado exitosamente.</h2>

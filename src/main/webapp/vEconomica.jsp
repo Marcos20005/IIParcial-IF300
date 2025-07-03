@@ -14,6 +14,7 @@
 <body>
     <div class="Violencia-Economica ventana">
         <h2>Información adicional del caso de Violencia Económica</h2>
+        <!-- Formulario para capturar información específica de violencia económica -->
         <form action="AgregarInformacionViolecia.jsp" method="post">
             <label for="ingreso">Ingrese el tipo de ingreso afectado *</label>
             <input type="text" id="ingreso" name="ingreso" required>
@@ -35,6 +36,7 @@
                 <label><input type="radio" name="agresorGenero" value="Otro" required> Otro</label>
             </div>
 
+            <!-- Campos ocultos para información adicional -->
             <input type="hidden" name="cedula" value="<%= cedula != null ? cedula : "" %>">
             <input type="hidden" name="tipoViolencia" value="<%= tipoViolencia != null ? tipoViolencia : "" %>">
 

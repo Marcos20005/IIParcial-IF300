@@ -3,6 +3,7 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
+    // Obtener la cédula que se busca en la base de datos
     String cedulaBuscada = request.getParameter("cedula");
 
     // Conexión a la base de datos

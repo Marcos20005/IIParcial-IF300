@@ -12,8 +12,10 @@
 
     <label for="areaCasos">Casos registrados</label>
     <textarea id="areaCasos" rows="5" readonly><%
+        // Obtener la lista de casos  
         List<String> listaCasos = (List<String>) request.getAttribute("listaCasos");
         if (listaCasos != null) {
+            // Mostrar cada caso en una línea dentro del textarea
             for (String caso : listaCasos) {
                 out.println(caso);
             }
@@ -45,6 +47,7 @@
 </div>
 
 <script>
+    // Función que pregunta confirmación antes de eliminar un caso
     function confirmarEliminarCaso() {
         return confirm('¿Está seguro de que desea eliminar este caso?');
     }

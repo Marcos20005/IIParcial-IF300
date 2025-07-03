@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
 <%
+    // Configuración de la conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
@@ -13,6 +14,7 @@
             String sql = "SELECT login, Nombre1 FROM usuario";
             try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
                 while (rs.next()) {
+                    // Recuperar el login y el nombre del usuario
                     String login = rs.getString("login");
                     String nombre = rs.getString("Nombre1");
                     textoUsuarios.append("Login: ").append(login).append(", Nombre: ").append(nombre).append("\n");

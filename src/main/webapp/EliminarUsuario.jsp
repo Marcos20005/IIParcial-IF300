@@ -3,10 +3,12 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
+    // Parámetros de conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
 
+    // Obtener el login del usuario a eliminar desde la solicitud
     String login = request.getParameter("login");
 %>
 <!DOCTYPE html>
@@ -32,9 +34,11 @@
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
                     stmt.setString(1, login);
                     try (ResultSet rs = stmt.executeQuery()) {
+                        // Verificar si se encontró el usuario
                         if (rs.next()) {
 %>
     <h2>Información del usuario a eliminar</h2>
+    <!-- Mostrar los datos del usuario -->
     <p><strong>Cédula:</strong> <%= rs.getString("cedula") %></p>
     <p><strong>Nombre 1:</strong> <%= rs.getString("nombre1") %></p>
     <p><strong>Nombre 2:</strong> <%= rs.getString("nombre2") %></p>
@@ -44,6 +48,8 @@
     <p><strong>Clave:</strong> <%= rs.getString("clave") %></p>
     <hr>
     <h3>¿Está seguro que desea eliminar este usuario?</h3>
+
+    <!-- Formulario para confirmar la eliminación del usuario -->
     <div class="botones">
         <form action="ConfirmarEliminarUsuario.jsp" method="post">
             <input type="hidden" name="login" value="<%= login %>">

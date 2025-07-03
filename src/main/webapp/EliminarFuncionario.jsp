@@ -2,8 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     request.setCharacterEncoding("UTF-8");
+
+    // Obtener la cédula del funcionario a eliminar desde la solicitud
     String cedula = request.getParameter("cedula");
 
+    // Parámetros de conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
@@ -29,11 +32,14 @@
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 String sql = "SELECT * FROM oficinaregional WHERE IDempleado = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    // Asignar valor de cédula al parámetro SQL
                     stmt.setString(1, cedula);
                     try (ResultSet rs = stmt.executeQuery()) {
+                        // Si existe el funcionario, obtener datos y mostrar formulario con valores
                         if (rs.next()) {
 %>
     <h2>Información del funcionario que desea eliminar</h2>
+     <!-- Mostrar los datos del funcionario encontrados -->
     <p><strong>Nombre:</strong> <%= rs.getString("Nombre") %></p>
     <p><strong>Cédula:</strong> <%= rs.getString("Cedula") %></p>
     <p><strong>ID Empleado:</strong> <%= rs.getString("IDempleado") %></p>
@@ -47,6 +53,7 @@
     <hr>
     <h3>¿Está seguro que desea eliminar este funcionario?</h3>
     <div class="botones">
+        <!-- Formulario de confirmación de eliminación -->
         <form action="ConfirmarEliminarFuncionario.jsp" method="post">
             <input type="hidden" name="confirmar" value="true">
             <input type="hidden" name="cedula" value="<%= cedula %>">
@@ -70,6 +77,7 @@
     }
 %>
 <div class="botones">
+    <!-- Botones para volver a la lista de oficinas o al menú -->
     <form action="ConsultarOficina.jsp" method="post">
         <button type="submit"><i class="fi fi-rr-rectangle-list"></i>Volver a lista de oficinas</button>
     </form>

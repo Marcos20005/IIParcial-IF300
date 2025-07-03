@@ -1,6 +1,7 @@
 <%@ page import="java.sql.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    // Parámetros de conexión a la base de datos
     String url = "jdbc:mysql://localhost:3306/proyecto1";
     String user = "root";
     String password = "cRojas34";
@@ -27,6 +28,7 @@
     try {
         Class.forName("com.mysql.cj.jdbc.Driver");
         conn = DriverManager.getConnection(url, user, password);
+        // Consulta para obtener cédula, nombre y descripción de los casos
         String sql = "SELECT Cedula, Nombre, Descripcion FROM caso";
         stmt = conn.prepareStatement(sql);
         rs = stmt.executeQuery();
@@ -42,6 +44,7 @@
     } catch (Exception e) {
         out.println("Error al consultar los casos: " + e.getMessage());
     } finally {
+        // Cerrar recursos para evitar fugas de memoria
         if (rs != null) try { rs.close(); } catch (Exception e) {}
         if (stmt != null) try { stmt.close(); } catch (Exception e) {}
         if (conn != null) try { conn.close(); } catch (Exception e) {}
@@ -53,10 +56,12 @@
         <input type="text" id="cedula" name="cedula">
 
         <div class="botones">
+               <!-- Botón para ingresar un nuevo caso -->
             <form action="AgregarCaso.jsp" method="post" style="display:inline;">
                 <button type="submit"> <i class="fi fi-rr-add-document"></i>Ingresar nuevo caso</button>
             </form>
 
+            <!-- Botones para buscar, editar y eliminar casos -->
             <form action="BuscarCaso.jsp" method="post">
                 <input type="hidden" name="cedula" id="cedulaBuscar">
                 <button type="submit" onclick="document.getElementById('cedulaBuscar').value = document.getElementById('cedula').value;"> <i class="fi fi-rr-search"></i> Buscar</button>
@@ -77,6 +82,7 @@
         </div>
 
         <script>
+            // Función que pregunta confirmación antes de eliminar un caso
             function confirmarEliminacion() {
                 return confirm('¿Estás seguro de que desea eliminar este caso?');
             }
