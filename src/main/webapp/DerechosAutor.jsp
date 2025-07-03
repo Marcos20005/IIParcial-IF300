@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Desarrolladores del Proyecto</title>
+     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estiloDesarrolladores.css">
 </head>
 <body>
@@ -22,7 +23,7 @@
     </div>
     <div>
         <form action="Menu.jsp" method="post">
-            <button type="submit">Volver al Menú</button>
+            <button type="submit"><i class="fi fi-rr-undo"></i>Volver al Menú</button>
             </form>
     </div>
 </body>

@@ -3,7 +3,7 @@
 <%
     String url = "jdbc:mysql://localhost:3306/proyecto1";
     String user = "root";
-    String password = "erpalacios";
+    String password = "cRojas34";
 
     Connection conn = null;
     PreparedStatement stmt = null;
@@ -14,6 +14,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Casos Registrados</title>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -53,25 +54,25 @@
 
         <div class="botones">
             <form action="AgregarCaso.jsp" method="post" style="display:inline;">
-                <button type="submit">Ingresar nuevo caso</button>
+                <button type="submit"> <i class="fi fi-rr-add-document"></i>Ingresar nuevo caso</button>
             </form>
 
             <form action="BuscarCaso.jsp" method="post">
                 <input type="hidden" name="cedula" id="cedulaBuscar">
-                <button type="submit" onclick="document.getElementById('cedulaBuscar').value = document.getElementById('cedula').value;">Buscar</button>
+                <button type="submit" onclick="document.getElementById('cedulaBuscar').value = document.getElementById('cedula').value;"> <i class="fi fi-rr-search"></i> Buscar</button>
             </form>
 
             <form action="EditarCaso.jsp" method="post">
                 <input type="hidden" name="cedula" id="cedulaEditar">
-                <button type="submit" onclick="document.getElementById('cedulaEditar').value = document.getElementById('cedula').value;">Editar</button>
+                <button type="submit" onclick="document.getElementById('cedulaEditar').value = document.getElementById('cedula').value;">  <i class="fi fi-rr-edit"></i> Editar</button>
             </form>
 
             <form action="EliminarCaso.jsp" method="post">
                 <input type="hidden" name="cedula" id="cedulaEliminar">
-                <button type="submit" onclick="document.getElementById('cedulaEliminar').value = document.getElementById('cedula').value; return confirmarEliminacion();">Eliminar</button>
+                <button type="submit" onclick="document.getElementById('cedulaEliminar').value = document.getElementById('cedula').value; return confirmarEliminacion();">  <i class="fi fi-rr-trash"></i> Eliminar</button>
             </form>
             <form action="Menu.jsp" method="post">
-                <button type="submit">Volver a Menu </button>
+                <button type="submit"><i class="fi fi-rr-undo"></i>Volver a Menu </button>
             </form>
         </div>
 

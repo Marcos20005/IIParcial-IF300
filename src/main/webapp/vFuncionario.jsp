@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Agregar Funcionario</title>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -41,7 +42,7 @@
         <input type="hidden" name="cedulaCaso" value="<%= cedulaCaso %>">
         
         <div class="botones">
-            <button type="submit">💾 Guardar</button>
+            <button type="submit"><i class="fi fi-rr-disk"></i> Guardar</button>
         </div>
     </form>
 </div>

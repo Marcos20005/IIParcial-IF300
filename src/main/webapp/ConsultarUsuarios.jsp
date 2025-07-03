@@ -3,7 +3,7 @@
 <%
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "erpalacios";
+    String PASSWORD = "cRojas34";
 
     StringBuilder textoUsuarios = new StringBuilder();
 
@@ -31,6 +31,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Usuarios Registrados</title>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -46,14 +47,14 @@
     <div class="botones">
         <!-- Botón Ingresar nuevo usuario -->
         <form action="vUsuario.jsp" method="post" style="display:inline;">
-            <button type="submit">Ingresar nuevo usuario</button>
+          <button type="submit"><i class="fi fi-rr-add-document"></i>Ingresar nuevo usuario</button>
         </form>
 
         <!-- Botón Buscar usuario -->
         <form action="BuscarUsuario.jsp" method="post" style="display:inline;">
             <input type="hidden" name="login" id="loginOculto">
             <button type="submit" onclick="document.getElementById('loginOculto').value = document.getElementById('cedula').value;">
-                Buscar
+            <i class="fi fi-rr-search"></i>   Buscar
             </button>
         </form>
 
@@ -61,7 +62,7 @@
         <form action="EditarUsuario.jsp" method="post" style="display:inline;">
             <input type="hidden" name="login" id="loginEditarOculto">
             <button type="submit" onclick="document.getElementById('loginEditarOculto').value = document.getElementById('cedula').value;">
-                Editar
+       <i class="fi fi-rr-edit"></i>          Editar
             </button>
         </form>
 
@@ -69,11 +70,11 @@
         <form action="EliminarUsuario.jsp" method="post" style="display:inline;">
             <input type="hidden" name="login" id="loginEliminarOculto">
             <button type="submit" onclick="document.getElementById('loginEliminarOculto').value = document.getElementById('cedula').value; return confirmarEliminacion();">
-                Eliminar
+            <i class="fi fi-rr-trash"></i>     Eliminar
             </button>
         </form>
          <form action="Menu.jsp" method="post">
-                <button type="submit">Volver a Menu </button>
+                <button type="submit"><i class="fi fi-rr-undo"></i>Volver a Menu </button>
             </form>
     </div>
 

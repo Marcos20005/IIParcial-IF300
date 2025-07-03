@@ -16,7 +16,7 @@
     if (cedula != null && nombre1 != null && apellido1 != null && login != null && clave != null) {
         String URL = "jdbc:mysql://localhost:3306/proyecto1";
         String USER = "root";
-        String PASSWORD = "erpalacios";
+        String PASSWORD = "cRojas34";
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -53,7 +53,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Guardar Usuario</title>
+    <title>Guardar Usuario</title><link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -67,7 +67,7 @@
         </form>
 
         <form action="Menu.jsp" method="get" style="display:inline; margin-left:10px;">
-            <button type="submit">🏠 Volver al menú</button>
+            <button type="submit"><i class="fi fi-rr-disk"> Volver al menú</button>
         </form>
     </div>
 </div>

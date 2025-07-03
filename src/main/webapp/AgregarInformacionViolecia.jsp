@@ -79,6 +79,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Resultado de Registro</title>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -86,8 +87,8 @@
     <h2>Resultado</h2>
     <p><%= mensaje %></p>
     <div class="botones">
-        <form action="Menu.html" method="get">
-            <button type="submit">🏠 Volver al Menú</button>
+        <form action="Menu.jsp" method="get">
+            <button type="submit"><i class="fi fi-rr-undo"></i> Volver al Menú</button>
         </form>
     </div>
 </div>

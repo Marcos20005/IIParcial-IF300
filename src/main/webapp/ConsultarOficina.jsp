@@ -3,7 +3,7 @@
 <%
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "erpalacios";
+    String PASSWORD = "cRojas34";
 
     Connection conn = null;
     PreparedStatement stmt1 = null, stmt2 = null;
@@ -27,12 +27,12 @@
                          .append("\n");
         }
 
-      String sqlCasos = "SELECT c.Cedula FROM caso c LEFT JOIN oficinaregional o ON c.Cedula = o.CedulaCaso WHERE o.CedulaCaso IS NULL";
+      String sqlCasos = "SELECT c.Cedula, c.Nombre FROM caso c LEFT JOIN oficinaregional o ON c.Cedula = o.CedulaCaso WHERE o.CedulaCaso IS NULL";
       stmt2 = conn.prepareStatement(sqlCasos);
       rs2 = stmt2.executeQuery();
 
       while (rs2.next()) {
-          textoCasos.append(rs2.getString("Cedula")).append("\n");
+          textoCasos.append("Cedula:"+ rs2.getString("Cedula")+",Nombre: "+rs2.getString("Nombre")+"\n");
       }
     } catch (Exception e) {
         textoOficinas.append("Error al consultar: ").append(e.getMessage());
@@ -50,6 +50,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Oficinas con respuestas registradas</title>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -71,34 +72,36 @@
         <form action="vFuncionario.jsp" method="post" style="display:inline; margin-left:10px;">
             <input type="hidden" name="cedulaCaso" id="cedulaCasoOculta">
             <button type="submit" onclick="document.getElementById('cedulaCasoOculta').value = document.getElementById('cedulaCaso').value;">
-                Ingresar respuesta de funcionario
+        <i class="fi fi-rr-add-document"></i>     Ingresar respuesta de funcionario
             </button>
         </form>
 
         <form action="BuscarOficina.jsp" method="post" style="display:inline; margin-left:10px;">
             <input type="hidden" name="cedula" id="cedulaOficinaBuscar">
             <button type="submit" onclick="document.getElementById('cedulaOficinaBuscar').value = document.getElementById('cedulaCaso').value;">
-                Buscar
+             <i class="fi fi-rr-search"></i>  Buscar
             </button>
         </form>
 
         <form action="EditarFuncionario.jsp" method="post" style="display:inline; margin-left:10px;">
             <input type="hidden" name="cedula" id="cedulaOficinaEditar">
             <button type="submit" onclick="document.getElementById('cedulaOficinaEditar').value = document.getElementById('cedulaCaso').value;">
-                Editar
+           <i class="fi fi-rr-edit"></i>      Editar
             </button>
         </form>
 
         <form action="EliminarFuncionario.jsp" method="post" style="display:inline; margin-left:10px;">
             <input type="hidden" name="cedula" id="cedulaOficinaEliminar">
             <button type="submit" onclick="document.getElementById('cedulaOficinaEliminar').value = document.getElementById('cedulaCaso').value; return confirmarEliminacion();">
-                Eliminar
+         <i class="fi fi-rr-trash"></i>       Eliminar
             </button>
         </form>
 
-        <%-- BOTÓN "Volver a Menu" AHORA DENTRO DEL DIV "botones" --%>
+        
         <form action="Menu.jsp" method="post" style="display:inline; margin-left:10px;">
-            <button type="submit">Volver a Menu</button>
+            <button type="submit">
+                <i class="fi fi-rr-undo"></i>Volver a Menu
+            </button>
         </form>
         
     </div>

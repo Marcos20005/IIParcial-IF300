@@ -6,13 +6,14 @@
 
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "erpalacios";
+    String PASSWORD = "cRojas34";
 %>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Editar Funcionario</title>
+     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -52,12 +53,10 @@
         <input type="hidden" name="cedulaCaso" value="<%= rs.getString("CedulaCaso") %>">
 
         <div class="botones">
-            <button type="submit">Guardar cambios</button>
+            <button type="submit"><i class="fi fi-rr-disk"></i>Guardar cambios</button>
     </form>
 
-    <form action="ConsultarOficina.jsp" method="post">
-        <button type="submit">Volver</button>
-    </form>
+    
 </div>
 <%
                     } else {
@@ -74,6 +73,14 @@
 <%
     }
 %>
+<div class="botones">
+    <form action="ConsultarCasos.jsp" method="post">
+        <button type="submit"><i class="fi fi-rr-rectangle-list"></i>Volver a lista de casos</button>
+    </form>
+    <form action="Menu.jsp" method="get">
+        <button type="submit"><i class="fi fi-rr-undo"></i>Volver al menú</button>
+    </form>
+</div>
 </div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
-    <%-- Captura de los parámetros del formulario enviados por POST --%>
+   
     String idEmpleado = request.getParameter("idEmpleado");
     String nombre = request.getParameter("nombre");
     String cedulaFuncionario = request.getParameter("cedulaFuncionario");
@@ -13,10 +13,10 @@
     String telefono = request.getParameter("telefono");
     String cedulaCaso = request.getParameter("cedulaCaso");
 
-    <%-- Datos de conexión a la base de datos --%>
+    
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "erpalacios";
+    String PASSWORD = "cRojas34";
 
     boolean actualizado = false;
     String error = null;
@@ -30,7 +30,7 @@
             throw new Exception("El campo 'Cédula' solo debe contener números (ejemplo: 123456789)");
         }
 
-        // Conexión y actualización en base de datos
+      
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             String sql = "UPDATE oficinaregional SET Nombre=?, Cedula=?, Solucion=?, Lugar=?, Direccion=?, Telefono=? WHERE IDempleado=?";
@@ -43,7 +43,7 @@
                 stmt.setString(6, telefono);
                 stmt.setString(7, idEmpleado);
 
-                // Ejecuta la actualización y verifica si fue exitosa
+              
                 int filas = stmt.executeUpdate();
                 if (filas > 0) {
                     actualizado = true;
@@ -60,13 +60,12 @@
     <meta charset="UTF-8">
     <title>Resultado Actualización</title>
     <link rel="stylesheet" href="estilo.css">
-    <!-- Carga de iconos Flaticon -->
     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
 </head>
 <body>
 <div class="ventana">
 <%
-    // Muestra mensaje según resultado de la operación
+   
     if (actualizado) {
 %>
     <h2><i class="fi fi-rr-check-circle"></i> Funcionario actualizado exitosamente.</h2>
@@ -84,11 +83,11 @@
 <div class="botones">
     <!-- Botón para volver a consultar oficinas -->
     <form action="ConsultarOficina.jsp" method="post">
-        <button type="submit">Volver a oficinas</button>
+        <button type="submit"><i class="fi fi-rr-rectangle-list"></i>Volver a oficinas</button>
     </form>
     <!-- Botón para volver al menú principal -->
     <form action="Menu.jsp" method="get">
-        <button type="submit">Volver al menú</button>
+        <button type="submit"><i class="fi fi-rr-undo"></i>Volver al menú</button>
     </form>
 </div>
 </div>

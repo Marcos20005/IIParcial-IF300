@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Nuevo caso</title>
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -78,7 +79,7 @@
             </div>
 
             <div class="botones">
-                <button type="submit">Ingresar</button> 
+                <button type="submit"><i class="fi fi-rr-disk"></i>Ingresar</button> 
             </div>
         </form>
     </div>

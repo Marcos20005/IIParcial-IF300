@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Proyecto</title>
+     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -21,8 +22,8 @@
                 </tr>
             </table>
             <div class="botones">
-                <button type="submit">Ingresar</button>
-                <button type="reset">Limpiar</button>
+                <button type="submit"><i class="fi fi-rr-entrance"></i>Ingresar</button>
+                <button type="reset"><i class="fi fi-rr-refresh"></i>Limpiar</button>
             </div>
              <%
                 String error = (String) request.getAttribute("errorLogin");

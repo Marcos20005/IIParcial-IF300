@@ -22,8 +22,10 @@
            }
         %>
 
-        <!-- Contenedor para los botones del menú -->
+       <%-- Contenedor para botones del menu principal--%>
         <div class="menu-opciones">
+
+            <%--Inicializacio de botones--%>
             <form action="/miproyectoexamen/ConsultarCasos.jsp" method="post">
                 <button type="submit" id="caso" class="">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
@@ -66,7 +68,7 @@
                     Salir
                 </button>
             </form>
-        <form action="https://www.youtube.com/watch?v=_t-E6QGs4Mo&t=666s" method="get" target="_blank">
+        <form action='https://www.youtube.com/watch?v=LIntF-VwOxg' method="get" target="_blank">
                 <button type="submit" id="video">
                     <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                         <path d="M8 5v14l11-7z"/>

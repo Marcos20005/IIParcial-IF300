@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Nuevo Usuario</title>
+     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -35,7 +36,7 @@
         <input type="password" name="clave" required>
 
         <div class="botones">
-            <button type="submit">💾 Guardar</button>
+            <button type="submit"><i class="fi fi-rr-disk"></i> Guardar</button>
         </div>
 
     </form>

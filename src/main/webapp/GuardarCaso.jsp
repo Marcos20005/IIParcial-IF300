@@ -21,7 +21,7 @@
 
     String url = "jdbc:mysql://localhost:3306/proyecto1";
     String user = "root";
-    String password = "erpalacios";
+    String password = "cRojas34";
 
     boolean exito = false;
     String mensaje = "";
@@ -88,6 +88,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Resultado del caso</title>
+     <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -96,7 +97,7 @@
         <p><strong><%= mensaje %></strong></p>
 
         <form action="Menu.jsp" method="get">
-            <button type="submit">Volver al menú</button>
+            <button type="submit"><i class="fi fi-rr-disk"></i>Volver al menú</button>
         </form>
     </div>
 </body>
