@@ -4,7 +4,7 @@
     String loginBuscado = request.getParameter("login");
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "cRojas34";
+    String PASSWORD = "erpalacios";
 
     String mensaje = "";
     String cedula = "", nombre1 = "", nombre2 = "", apellido1 = "", apellido2 = "", login = "", clave = "";

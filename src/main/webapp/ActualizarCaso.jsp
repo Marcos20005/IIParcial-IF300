@@ -9,7 +9,7 @@
 
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "cRojas34";
+    String PASSWORD = "erpalacios";
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -17,43 +17,52 @@
     <meta charset="UTF-8">
     <title>Actualizar Caso</title>
     <link rel="stylesheet" href="estilo.css">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
 </head>
 <body>
 <div class="ventana">
 <h2>Actualizar Información del Caso</h2>
 <%
-    if (cedula == null || cedula.isEmpty()) {
-%>
-    <p>Error: La cédula es obligatoria para actualizar el caso.</p>
-<%
-    } else {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
-                String sql = "UPDATE caso SET Nombre = ?, Descripcion = ? WHERE Cedula = ?";
-                try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-                    stmt.setString(1, nombre);
-                    stmt.setString(2, descripcion);
-                    stmt.setString(3, cedula);
+    try {
+        if (cedula == null || cedula.trim().isEmpty()) {
+            throw new Exception("La cédula es obligatoria para actualizar el caso");
+        }
+        if (nombre == null || nombre.trim().isEmpty()) {
+            throw new Exception("El nombre no puede estar vacío");
+        }
+        if (descripcion == null || descripcion.trim().isEmpty()) {
+            throw new Exception("La descripción no puede estar vacía");
+        }
 
-                    int filasActualizadas = stmt.executeUpdate();
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            String sql = "UPDATE caso SET Nombre = ?, Descripcion = ? WHERE Cedula = ?";
+            try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                stmt.setString(1, nombre);
+                stmt.setString(2, descripcion);
+                stmt.setString(3, cedula);
 
-                    if (filasActualizadas > 0) {
+                int filasActualizadas = stmt.executeUpdate();
+
+                if (filasActualizadas > 0) {
 %>
-    <p>✅ Caso actualizado correctamente.</p>
+    <p><i class="fi fi-rr-check-circle"></i> Caso actualizado correctamente.</p>
 <%
-                    } else {
+                } else {
 %>
-    <p>❌ No se pudo actualizar el caso. No se encontró la cédula.</p>
+    <p><i class="fi fi-rr-cross-circle"></i> No se pudo actualizar el caso. No se encontró la cédula.</p>
 <%
-                    }
                 }
             }
-        } catch (SQLException | ClassNotFoundException e) {
-%>
-    <p>Error al actualizar la base de datos: <%= e.getMessage() %></p>
-<%
         }
+    } catch (SQLException | ClassNotFoundException e) {
+%>
+    <p><i class="fi fi-rr-cross-circle"></i> Error al actualizar la base de datos: <%= e.getMessage() %></p>
+<%
+    } catch (Exception ex) {
+%>
+    <p><i class="fi fi-rr-exclamation"></i> Error de validación: <%= ex.getMessage() %></p>
+<%
     }
 %>
 <div class="botones">

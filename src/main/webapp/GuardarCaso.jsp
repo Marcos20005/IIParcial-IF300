@@ -21,12 +21,19 @@
 
     String url = "jdbc:mysql://localhost:3306/proyecto1";
     String user = "root";
-    String password = "cRojas34";
+    String password = "erpalacios";
 
     boolean exito = false;
     String mensaje = "";
 
     try {
+          if (!cedula.matches("[0-9]+"))
+            throw new Exception("La cédula debe contener solo números.");
+
+        if (!celular.matches("[0-9]+"))
+            throw new Exception("El número celular debe contener solo números.");
+
+        // Conexión a la base de datos  
         Class.forName("com.mysql.cj.jdbc.Driver");
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
             Statement stmt = conn.createStatement();

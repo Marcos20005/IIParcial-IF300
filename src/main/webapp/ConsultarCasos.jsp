@@ -3,7 +3,7 @@
 <%
     String url = "jdbc:mysql://localhost:3306/proyecto1";
     String user = "root";
-    String password = "cRojas34";
+    String password = "erpalacios";
 
     Connection conn = null;
     PreparedStatement stmt = null;

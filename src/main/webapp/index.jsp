@@ -17,7 +17,7 @@
                 </tr>
                 <tr>
                     <td><label for="clave">Contraseña:</label></td>
-                    <td><input type="password" id="clave" name="Clave" required></td>
+                    <td><input type="text" id="clave" name="Clave" required></td>
                 </tr>
             </table>
             <div class="botones">

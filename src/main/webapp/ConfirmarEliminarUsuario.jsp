@@ -8,7 +8,7 @@
 
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "cRojas34";
+    String PASSWORD = "erpalacios";
 
     if (login == null || login.trim().isEmpty()) {
         mensaje = "❌ Error: No se proporcionó un login válido para eliminar.";

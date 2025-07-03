@@ -5,7 +5,7 @@
 
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "cRojas34";
+    String PASSWORD = "erpalacios";
 
     String login = request.getParameter("login"); 
     String cedula = request.getParameter("cedula");
