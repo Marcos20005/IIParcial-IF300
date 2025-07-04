@@ -63,7 +63,7 @@
 
     <div class="botones">
         <form action="vUsuario.jsp" method="get" style="display:inline;">
-            <button type="submit">🔁 Intentar de nuevo</button>
+            <button type="submit"><i class="fi fi-rr-rotate-right"></i> Intentar de nuevo</button>
         </form>
 
         <form action="Menu.jsp" method="get" style="display:inline; margin-left:10px;">
