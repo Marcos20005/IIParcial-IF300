@@ -18,11 +18,11 @@
                 </tr>
                 <tr>
                     <td><label for="clave">Contraseña:</label></td>
-                    <td><input type="text" id="clave" name="Clave" required></td>
+                    <td><input type="password" id="clave" name="Clave" required></td>
                 </tr>
             </table>
             <div class="botones">
-                <button type="submit"><i class="fi fi-rr-entrance"></i>Ingresar</button>
+                <button type="submit"><i class="fi fi-rr-sign-in-alt"></i>Ingresar</button>
                 <button type="reset"><i class="fi fi-rr-refresh"></i>Limpiar</button>
             </div>
              <%

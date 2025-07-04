@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Resultado del registro</title>
+          <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
         <link rel="stylesheet" href="estilo.css">
     </head>
     <body>

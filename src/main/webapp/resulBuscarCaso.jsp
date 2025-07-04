@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Resultado de búsqueda</title>
+      <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>
@@ -99,10 +100,10 @@
 
     <div class="botones">
         <form action="ConsultarCasos.jsp" method="post">
-            <button type="submit">📄 Lista de casos</button>
+            <button type="submit"><i class="fi fi-rr-rectangle-list"></i> Lista de casos</button>
         </form>
         <form action="Menu.jsp" method="get">
-            <button type="submit">🏠 Volver al menú</button>
+            <button type="submit"><i class="fi fi-rr-undo"></i> Volver al menú</button>
         </form>
     </div>
 </div>
