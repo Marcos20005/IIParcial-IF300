@@ -22,7 +22,7 @@
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "cRojas34");
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1?verifyServerCertificate=false&useSSL=true", "root", "erpalacios");
             stmt = con.createStatement();
 
             String query = "SELECT * FROM usuario WHERE login='" + usuario + "' AND clave='" + clave + "'";
@@ -59,7 +59,7 @@
     if (mensajeError != null) {
 %>
 <script>
-    alert("<%= mensajeError.replace("\"", "\\\"") %>");
+    alert("<%= mensajeError %>");
     window.location.href = "index.jsp";
 </script>
 <%

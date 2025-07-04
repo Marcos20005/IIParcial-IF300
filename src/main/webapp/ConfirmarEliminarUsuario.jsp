@@ -10,7 +10,7 @@
     // Parámetros de conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "cRojas34";
+    String PASSWORD = "erpalacios";
 
     // Validar que el login no esté vacío o nulo
     if (login == null || login.trim().isEmpty()) {

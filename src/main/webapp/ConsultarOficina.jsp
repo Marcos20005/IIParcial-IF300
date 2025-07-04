@@ -4,7 +4,7 @@
     // Parámetros de conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
-    String PASSWORD = "cRojas34";
+    String PASSWORD = "erpalacios";
 
     Connection conn = null;
     PreparedStatement stmt1 = null, stmt2 = null;

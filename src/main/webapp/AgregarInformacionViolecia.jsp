@@ -62,7 +62,7 @@
     if (sql != null) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1", "root", "cRojas34")) {
+            try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/proyecto1", "root", "erpalacios")) {
                 try (Statement stmt = conn.createStatement()) {
                     int filas = stmt.executeUpdate(sql);
                     if (filas > 0) {
