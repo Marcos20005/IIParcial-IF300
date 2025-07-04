@@ -3,6 +3,7 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
+    // Captura de parámetros del formulario 
     String cedula = request.getParameter("cedula");
     String nombre1 = request.getParameter("nombre1");
     String nombre2 = request.getParameter("nombre2");
@@ -13,6 +14,7 @@
 
     String mensaje = null;
 
+        // Validar que los campos obligatorios no vengan nulos
     if (cedula != null && nombre1 != null && apellido1 != null && login != null && clave != null) {
         String URL = "jdbc:mysql://localhost:3306/proyecto1";
         String USER = "root";
@@ -23,6 +25,7 @@
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 String sql = "INSERT INTO usuario (cedula, nombre1, nombre2, apellido1, apellido2, login, clave) VALUES (?, ?, ?, ?, ?, ?, ?)";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    // Establecer los parámetros de la consulta
                     stmt.setString(1, cedula);
                     stmt.setString(2, nombre1);
                     stmt.setString(3, nombre2);
@@ -53,7 +56,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Guardar Usuario</title><link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
+    <title>Guardar Usuario</title>
+    <!-- Estilos e íconos -->
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-regular-rounded/css/uicons-regular-rounded.css">
     <link rel="stylesheet" href="estilo.css">
 </head>
 <body>

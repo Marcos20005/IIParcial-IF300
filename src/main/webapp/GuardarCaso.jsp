@@ -19,9 +19,10 @@
     LocalDateTime fechaActual = LocalDateTime.now();
     LocalDate soloFecha = fechaActual.toLocalDate();
 
+    // Parámetros de conexión a la base de datos
     String url = "jdbc:mysql://localhost:3306/proyecto1";
     String user = "root";
-    String password = "cRojas34";
+    String password = "cRojas34"; 
 
     boolean exito = false;
     String mensaje = "";

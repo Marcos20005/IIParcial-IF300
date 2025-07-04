@@ -3,10 +3,12 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
+    // Parámetros de conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
 
+    // Parámetros recibidos del formulario
     String login = request.getParameter("login"); 
     String cedula = request.getParameter("cedula");
     String nombre1 = request.getParameter("nombre1");
@@ -17,6 +19,7 @@
 
     String mensaje = "";
 
+    // Validación inicial: el login es obligatorio
     if (login == null || login.isEmpty()) {
         mensaje = "Error: El login es obligatorio para actualizar el usuario.";
     } else {
@@ -25,6 +28,7 @@
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 String sql = "UPDATE usuario SET cedula = ?, nombre1 = ?, nombre2 = ?, apellido1 = ?, apellido2 = ?, clave = ? WHERE login = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    // Establecer parámetros para la consulta
                     stmt.setString(1, cedula);
                     stmt.setString(2, nombre1);
                     stmt.setString(3, nombre2);

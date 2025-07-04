@@ -11,6 +11,7 @@
     <div class="formulario-detalle ventana" style="display: block;">
         <h2>Registre la información solicitada</h2>
 
+        <!-- Fecha y hora actual de la denuncia se mostrarán dinámicamente -->
         <div class="fila-encabezado">
             <div>
                 <p><strong>Fecha de la denuncia:</strong> <span id="fechaDenuncia"></span></p>
@@ -19,6 +20,7 @@
             </div>
         </div>
 
+        <!-- Formulario para registrar un nuevo caso de violencia -->
         <form action="GuardarCaso.jsp" method="post">
             <div class="fila-doble">
                 <div class="columna">

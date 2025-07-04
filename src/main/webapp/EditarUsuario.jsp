@@ -1,8 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
 <%
+    // Obtener el parámetro 'login' enviado desde el formulario o petición
     String loginBuscado = request.getParameter("login");
 
+    // Parámetros de conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
@@ -10,6 +12,7 @@
     String mensaje = "";
     boolean encontrado = false;
 
+    // Variables para almacenar los datos del usuario
     String cedula = "", nombre1 = "", nombre2 = "", apellido1 = "", apellido2 = "", clave = "";
 
     if (loginBuscado != null && !loginBuscado.isEmpty()) {
@@ -21,6 +24,7 @@
                     stmt.setString(1, loginBuscado);
                     try (ResultSet rs = stmt.executeQuery()) {
                         if (rs.next()) {
+                            // Si se encuentra el usuario, se almacenan sus datos
                             encontrado = true;
                             cedula = rs.getString("cedula");
                             nombre1 = rs.getString("nombre1");
@@ -54,11 +58,14 @@
 </head>
 <body>
 <div class="ventana">
+    <%-- Mostrar mensaje de error si lo hay --%>
     <% if (!mensaje.isEmpty()) { %>
         <h3><%= mensaje %></h3>
     <% } else if (encontrado) { %>
+        <%-- Mostrar formulario con datos precargados para editar usuario --%>
         <h2>Editar Información del Usuario</h2>
         <form action="ActualizarUsuario.jsp" method="post">
+             <%-- Enviar el login oculto para identificar el usuario a actualizar --%>
             <input type="hidden" name="login" value="<%= loginBuscado %>">
 
             <label for="cedula">Cédula:</label>
@@ -85,6 +92,7 @@
         </form>
     <% } %>
 
+    <%-- Botones para volver a la lista de usuarios o al menú principal --%>
     <div class="botones">
         <form action="ConsultarUsuarios.jsp" method="post">
             <button type="submit"><i class="fi fi-rr-rectangle-list"></i>Volver a lista de usuarios</button>

@@ -3,6 +3,7 @@
     <%
         request.setCharacterEncoding("UTF-8");
 
+        // Obtener la cédula del caso a eliminar desde la solicitud
         String cedula = request.getParameter("cedula");
 
         String URL = "jdbc:mysql://localhost:3306/proyecto1";
@@ -32,11 +33,14 @@
                 try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                     String sql = "SELECT * FROM caso WHERE Cedula = ?";
                     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                        // Asignar valor de cédula al parámetro SQL
                         stmt.setString(1, cedula);
                         try (ResultSet rs = stmt.executeQuery()) {
+                            // Si existe el caso, obtener datos y mostrar formulario con valores
                             if (rs.next()) {
     %>
         <h2>Información del caso que desea eliminar</h2>
+        <!-- Mostrar todos los campos recuperados del caso -->
         <p><strong>Cédula:</strong> <%= rs.getString("Cedula") %></p>
         <p><strong>Nombre:</strong> <%= rs.getString("Nombre") %></p>
         <p><strong>Descripción:</strong> <%= rs.getString("Descripcion") %></p>
@@ -88,6 +92,7 @@
         <hr>
         <h3>¿Está seguro que desea eliminar este caso?</h3>
     <div class="botones">
+        <!-- Formulario de confirmación para eliminar el caso -->
         <form action="ConfirmarEliminarCaso.jsp" method="post">
             <input type="hidden" name="confirmar" value="true">
             <input type="hidden" name="cedula" value="<%= cedula %>">
@@ -141,6 +146,7 @@
     %>
 
     <div class="botones">
+         <!-- Botones para volver al menú o a la lista -->
         <form action="ConsultarCasos.jsp" method="post">
             <button type="submit"><i class="fi fi-rr-rectangle-list"></i>Volver a lista de casos</button>
         </form>

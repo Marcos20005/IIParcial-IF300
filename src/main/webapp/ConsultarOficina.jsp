@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.sql.*" %>
 <%
+    // Parámetros de conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
@@ -9,6 +10,7 @@
     PreparedStatement stmt1 = null, stmt2 = null;
     ResultSet rs1 = null, rs2 = null;
 
+    // Variables para almacenar la información recuperada
     StringBuilder textoOficinas = new StringBuilder();
     StringBuilder textoCasos = new StringBuilder();
 
@@ -27,6 +29,7 @@
                          .append("\n");
         }
 
+         // Consulta para obtener casos que NO tienen funcionario asignado
       String sqlCasos = "SELECT c.Cedula, c.Nombre FROM caso c LEFT JOIN oficinaregional o ON c.Cedula = o.CedulaCaso WHERE o.CedulaCaso IS NULL";
       stmt2 = conn.prepareStatement(sqlCasos);
       rs2 = stmt2.executeQuery();
@@ -37,6 +40,7 @@
     } catch (Exception e) {
         textoOficinas.append("Error al consultar: ").append(e.getMessage());
     } finally {
+        // Cerrar todos los recursos abiertos para evitar fugas de memoria
         if (rs1 != null) try { rs1.close(); } catch (Exception e) {}
         if (rs2 != null) try { rs2.close(); } catch (Exception e) {}
         if (stmt1 != null) try { stmt1.close(); } catch (Exception e) {}
@@ -57,18 +61,22 @@
 <div class="ventana">
     <h2>Oficinas con respuestas registradas</h2>
 
+    <!-- Área que muestra la lista de funcionarios registrados -->
     <label for="areaOficinas">Funcionarios registrados</label>
     <textarea id="areaOficinas" rows="5" readonly><%= textoOficinas.toString() %></textarea>
     <br><br>
 
+    <!-- Área que muestra la lista de casos sin funcionario asignado -->
     <label for="areaCasos">Cédulas de casos registrados</label>
     <textarea id="areaCasos" rows="5" readonly><%= textoCasos.toString() %></textarea>
     <br><br>
 
+    <!-- Campo para ingresar la cédula del caso y seleccionar la función -->
     <label for="cedulaCaso">Ingrese cédula del caso para asignar funcionario o ID y seleccione función</label><br>
     <input type="text" id="cedulaCaso" name="cedulaCaso"><br><br>
 
     <div class="botones">
+        <!-- Botón para ingresar funcionario -->
         <form action="vFuncionario.jsp" method="post" style="display:inline; margin-left:10px;">
             <input type="hidden" name="cedulaCaso" id="cedulaCasoOculta">
             <button type="submit" onclick="document.getElementById('cedulaCasoOculta').value = document.getElementById('cedulaCaso').value;">
@@ -76,6 +84,7 @@
             </button>
         </form>
 
+        <!-- Botones para buscar, editar y eliminar funcionario -->
         <form action="BuscarOficina.jsp" method="post" style="display:inline; margin-left:10px;">
             <input type="hidden" name="cedula" id="cedulaOficinaBuscar">
             <button type="submit" onclick="document.getElementById('cedulaOficinaBuscar').value = document.getElementById('cedulaCaso').value;">

@@ -3,13 +3,16 @@
 <%
     request.setCharacterEncoding("UTF-8");
 
+    // Obtener el login del usuario a eliminar
     String login = request.getParameter("login");
     String mensaje = "";
 
+    // Parámetros de conexión a la base de datos
     String URL = "jdbc:mysql://localhost:3306/proyecto1";
     String USER = "root";
     String PASSWORD = "cRojas34";
 
+    // Validar que el login no esté vacío o nulo
     if (login == null || login.trim().isEmpty()) {
         mensaje = "❌ Error: No se proporcionó un login válido para eliminar.";
     } else {
@@ -18,7 +21,9 @@
             try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
                 String sql = "DELETE FROM usuario WHERE login = ?";
                 try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+                    // Asignar el login al parámetro de la consulta SQL
                     stmt.setString(1, login);
+                    // Ejecutar la actualización y obtener el número de filas afectadas
                     int filasAfectadas = stmt.executeUpdate();
                     if (filasAfectadas > 0) {
                         mensaje = "✅ Usuario con login <strong>" + login + "</strong> eliminado exitosamente.";

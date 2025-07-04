@@ -25,6 +25,7 @@
     <%
         } else {
     %>
+        <!-- Datos del caso encontrados -->
         <p><strong>Cédula:</strong> <%= request.getAttribute("cedula") %></p>
         <p><strong>Nombre:</strong> <%= request.getAttribute("nombre") %></p>
         <p><strong>Descripción:</strong> <%= request.getAttribute("descripcion") %></p>
@@ -42,6 +43,7 @@
         <p><strong>Tipo de violencia:</strong> <%= request.getAttribute("tipoViolencia") %></p>
 
         <%
+         // Mostrar campos específicos según el tipo de violencia
             String tipoViolencia = (String) request.getAttribute("tipoViolencia");
             if ("Violencia Económica".equals(tipoViolencia)) {
         %>
@@ -68,6 +70,7 @@
             }
         %>
 
+        <!-- Información del funcionario asignado -->
         <h3>Funcionario asignado al caso</h3>
         <%
             String funcNombre = (String) request.getAttribute("funcNombre");
